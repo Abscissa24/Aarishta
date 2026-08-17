@@ -1,0 +1,287 @@
+<!DOCTYPE html><html data-astro-transition-scope="astro-nfpogox7-1" lang="en"><head><!-- Global Metadata --><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="generator" content="Astro v7.1.3"><!-- Open Graph / Facebook / WhatsApp --><meta property="og:type" content="website"><meta property="og:url" content="https://abscissa24.github.io/Aarishta/about/"><meta property="og:title" content="Portfolio — Aarishta Pillay"><meta property="og:description" content="Bachelor of Education graduate from STADIO Faculty of Education, with extensive coursework and certifications in education. Proven ability to engage with diverse audiences effectively. Eager to contribute to educational projects and gain practical experience. Committed to enhancing educational initiatives through active participation."><meta property="og:image" content="https://abscissa24.github.io/Aarishta/Assets/Media/preview.png"><!-- Twitter --><meta property="twitter:card" content="summary_large_image"><meta property="twitter:url" content="https://abscissa24.github.io/Aarishta/about/"><meta property="twitter:title" content="Portfolio — Aarishta Pillay"><meta property="twitter:description" content="Bachelor of Education graduate from STADIO Faculty of Education, with extensive coursework and certifications in education. Proven ability to engage with diverse audiences effectively. Eager to contribute to educational projects and gain practical experience. Committed to enhancing educational initiatives through active participation."><meta property="twitter:image" content="https://abscissa24.github.io/Aarishta/Assets/Media/preview.png"><!-- Favicon --><link rel="icon" type="image/svg+xml" href="/Aarishta/favicon.svg"><!-- Fonts --><link rel="preload" href="/Aarishta/fonts/Inter-Regular.woff2" as="font" type="font/woff2" crossorigin><link rel="preload" href="/Aarishta/fonts/Inter-Bold.woff2" as="font" type="font/woff2" crossorigin><!-- Avatar photo (Photo.tsx, Home page only). It's a large remote
+     file, and previously only started fetching once the Home page's
+     React island hydrated client-side - by then the rest of the UI
+     had already painted, so the avatar visibly popped in afterward.
+     Preloading it from every page's <head> means the browser starts
+     that fetch immediately (in parallel with everything else) and, on
+     the ~5-minute HTTP cache this file is served with, means it's
+     already warm in cache if you arrive at Home by navigating there
+     from About/Projects rather than landing on it directly. --><link rel="preload" href="/Aarishta/Assets/Avatar/profile.svg" as="image" fetchpriority="high"><!-- Canonical URL --><link rel="canonical" href="https://abscissa24.github.io/Aarishta/about/"><!-- Primary Meta Tags --><title>About - Athena</title><meta name="title" content="About - Athena"><meta name="description" content="Armiel Pillay's personal website"><!--  Client-side routing / View Transitions --><meta name="astro-view-transitions-enabled" content="true"><meta name="astro-view-transitions-fallback" content="animate"><script type="module" src="/Aarishta/_astro/ClientRouter.astro_astro_type_script_index_0_lang.CR91mYQj.js"></script><!--  Theme + Reduced Motion --><script>
+  const setTheme = () => {
+    const theme = (() => {
+      if (
+        typeof localStorage !== "undefined" &&
+        localStorage.getItem("theme")
+      ) {
+        return localStorage.getItem("theme");
+      }
+      if (window.matchMedia("(prefers-color-scheme: dark)").matches) {
+        return "dark";
+      }
+      return "light";
+    })();
+
+    if (theme === "light") {
+      document.documentElement.classList.remove("dark");
+    } else {
+      document.documentElement.classList.add("dark");
+    }
+
+    window.localStorage.setItem("theme", theme || "light");
+  };
+
+  const setReducedMotion = () => {
+    const reducedMotion = (() => {
+      if (
+        typeof localStorage !== "undefined" &&
+        localStorage.getItem("reducedMotion")
+      ) {
+        return localStorage.getItem("reducedMotion") === "true";
+      }
+      return window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    })();
+
+    document.documentElement.classList.toggle("reduce-motion", reducedMotion);
+    window.localStorage.setItem(
+      "reducedMotion",
+      reducedMotion ? "true" : "false",
+    );
+  };
+
+  // Run immediately - not wrapped in an astro:page-load listener, which
+  // only fires once the page has essentially finished loading (well
+  // after first paint). Waiting for that event means the browser paints
+  // the default light/full-motion state first, then flips - a visible
+  // flash. Running synchronously here, before <body> is parsed, means
+  // the correct class is already on <html> for the very first paint.
+  setTheme();
+  setReducedMotion();
+
+  // Client-side navigations swap in a freshly server-rendered <head>/
+  // <body>, so re-apply both on every swap too.
+  document.addEventListener("astro:after-swap", setTheme);
+  document.addEventListener("astro:after-swap", setReducedMotion);
+</script><link rel="stylesheet" href="/Aarishta/_astro/BaseLayout.BHVebMWD.css"><script type="module" src="/Aarishta/_astro/page.DUP3bs27.js"></script><style>[data-astro-transition-scope="astro-nfpogox7-1"] { view-transition-name: astro-nfpogox7-1; }@layer astro { ::view-transition-old(astro-nfpogox7-1) { animation: none; opacity: 0; mix-blend-mode: normal; }::view-transition-new(astro-nfpogox7-1) { animation: none; mix-blend-mode: normal; }::view-transition-group(astro-nfpogox7-1) { animation: none } }[data-astro-transition-fallback="old"] [data-astro-transition-scope="astro-nfpogox7-1"],
+			[data-astro-transition-fallback="old"][data-astro-transition-scope="astro-nfpogox7-1"] { animation: none; mix-blend-mode: normal; }[data-astro-transition-fallback="new"] [data-astro-transition-scope="astro-nfpogox7-1"],
+			[data-astro-transition-fallback="new"][data-astro-transition-scope="astro-nfpogox7-1"] { animation: none; mix-blend-mode: normal; }</style><style>[data-astro-transition-scope="astro-wugk46rw-2"] { view-transition-name: starry-bg; }@layer astro { ::view-transition-old(starry-bg) { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeOut; }::view-transition-new(starry-bg) { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeIn; }[data-astro-transition=back]::view-transition-old(starry-bg) { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeOut; }[data-astro-transition=back]::view-transition-new(starry-bg) { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeIn; } }[data-astro-transition-fallback="old"] [data-astro-transition-scope="astro-wugk46rw-2"],
+			[data-astro-transition-fallback="old"][data-astro-transition-scope="astro-wugk46rw-2"] { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeOut; }[data-astro-transition-fallback="new"] [data-astro-transition-scope="astro-wugk46rw-2"],
+			[data-astro-transition-fallback="new"][data-astro-transition-scope="astro-wugk46rw-2"] { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeIn; }[data-astro-transition=back][data-astro-transition-fallback="old"] [data-astro-transition-scope="astro-wugk46rw-2"],
+			[data-astro-transition=back][data-astro-transition-fallback="old"][data-astro-transition-scope="astro-wugk46rw-2"] { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeOut; }[data-astro-transition=back][data-astro-transition-fallback="new"] [data-astro-transition-scope="astro-wugk46rw-2"],
+			[data-astro-transition=back][data-astro-transition-fallback="new"][data-astro-transition-scope="astro-wugk46rw-2"] { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeIn; }</style><style>[data-astro-transition-scope="astro-itre4v7m-3"] { view-transition-name: astro-itre4v7m-3; }@layer astro { ::view-transition-old(astro-itre4v7m-3) { 
+	animation-duration: 90ms, 220ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1), cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both, both;
+	animation-name: astroFadeOut, astroSlideToLeft; }::view-transition-new(astro-itre4v7m-3) { 
+	animation-duration: 210ms, 220ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1), cubic-bezier(0.76, 0, 0.24, 1);
+	animation-delay: 30ms;
+	animation-fill-mode: both, both;
+	animation-name: astroFadeIn, astroSlideFromRight; }[data-astro-transition=back]::view-transition-old(astro-itre4v7m-3) { 
+	animation-name: astroFadeOut, astroSlideToRight; }[data-astro-transition=back]::view-transition-new(astro-itre4v7m-3) { 
+	animation-name: astroFadeIn, astroSlideFromLeft; } }[data-astro-transition-fallback="old"] [data-astro-transition-scope="astro-itre4v7m-3"],
+			[data-astro-transition-fallback="old"][data-astro-transition-scope="astro-itre4v7m-3"] { 
+	animation-duration: 90ms, 220ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1), cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both, both;
+	animation-name: astroFadeOut, astroSlideToLeft; }[data-astro-transition-fallback="new"] [data-astro-transition-scope="astro-itre4v7m-3"],
+			[data-astro-transition-fallback="new"][data-astro-transition-scope="astro-itre4v7m-3"] { 
+	animation-duration: 210ms, 220ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1), cubic-bezier(0.76, 0, 0.24, 1);
+	animation-delay: 30ms;
+	animation-fill-mode: both, both;
+	animation-name: astroFadeIn, astroSlideFromRight; }[data-astro-transition=back][data-astro-transition-fallback="old"] [data-astro-transition-scope="astro-itre4v7m-3"],
+			[data-astro-transition=back][data-astro-transition-fallback="old"][data-astro-transition-scope="astro-itre4v7m-3"] { 
+	animation-name: astroFadeOut, astroSlideToRight; }[data-astro-transition=back][data-astro-transition-fallback="new"] [data-astro-transition-scope="astro-itre4v7m-3"],
+			[data-astro-transition=back][data-astro-transition-fallback="new"][data-astro-transition-scope="astro-itre4v7m-3"] { 
+	animation-name: astroFadeIn, astroSlideFromLeft; }</style><style>[data-astro-transition-scope="astro-znvvpdic-4"] { view-transition-name: site-header; }@layer astro { ::view-transition-old(site-header) { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeOut; }::view-transition-new(site-header) { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeIn; }[data-astro-transition=back]::view-transition-old(site-header) { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeOut; }[data-astro-transition=back]::view-transition-new(site-header) { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeIn; } }[data-astro-transition-fallback="old"] [data-astro-transition-scope="astro-znvvpdic-4"],
+			[data-astro-transition-fallback="old"][data-astro-transition-scope="astro-znvvpdic-4"] { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeOut; }[data-astro-transition-fallback="new"] [data-astro-transition-scope="astro-znvvpdic-4"],
+			[data-astro-transition-fallback="new"][data-astro-transition-scope="astro-znvvpdic-4"] { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeIn; }[data-astro-transition=back][data-astro-transition-fallback="old"] [data-astro-transition-scope="astro-znvvpdic-4"],
+			[data-astro-transition=back][data-astro-transition-fallback="old"][data-astro-transition-scope="astro-znvvpdic-4"] { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeOut; }[data-astro-transition=back][data-astro-transition-fallback="new"] [data-astro-transition-scope="astro-znvvpdic-4"],
+			[data-astro-transition=back][data-astro-transition-fallback="new"][data-astro-transition-scope="astro-znvvpdic-4"] { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeIn; }</style></head><body><style>astro-island,astro-slot,astro-static-slot{display:contents}</style><script>(()=>{var l=(n,t)=>{let i=async()=>{await(await n())()},e=typeof t.value=="object"?t.value:void 0,s={timeout:e==null?void 0:e.timeout};"requestIdleCallback"in window?window.requestIdleCallback(i,s):setTimeout(i,s.timeout||200)};(self.Astro||(self.Astro={})).idle=l;window.dispatchEvent(new Event("astro:idle"));})();</script><script>(()=>{var g=Object.defineProperty;var w=(a,s,c)=>s in a?g(a,s,{enumerable:!0,configurable:!0,writable:!0,value:c}):a[s]=c;var l=(a,s,c)=>w(a,typeof s!="symbol"?s+"":s,c);var E=new Set(["__proto__","constructor","prototype"]);{let a={0:t=>y(t),1:t=>c(t),2:t=>new RegExp(t),3:t=>new Date(t),4:t=>new Map(c(t)),5:t=>new Set(c(t)),6:t=>BigInt(t),7:t=>new URL(t),8:t=>new Uint8Array(t),9:t=>new Uint16Array(t),10:t=>new Uint32Array(t),11:t=>Number.POSITIVE_INFINITY*t},s=t=>{let[p,e]=t;return p in a?a[p](e):void 0},c=t=>t.map(s),y=t=>typeof t!="object"||t===null?t:Object.fromEntries(Object.entries(t).map(([p,e])=>[p,s(e)]));class f extends HTMLElement{constructor(){super(...arguments);l(this,"Component");l(this,"hydrator");l(this,"hydrate",async()=>{var b;if(!this.hydrator||!this.isConnected)return;let e=(b=this.parentElement)==null?void 0:b.closest("astro-island[ssr]");if(e){e.addEventListener("astro:hydrate",this.hydrate,{once:!0});return}let r=this.querySelectorAll("astro-slot"),n={},d=this.querySelectorAll("template[data-astro-template]");for(let o of d){let i=o.closest(this.tagName);i!=null&&i.isSameNode(this)&&(n[o.getAttribute("data-astro-template")||"default"]=o.innerHTML,o.remove())}for(let o of r){let i=o.closest(this.tagName);i!=null&&i.isSameNode(this)&&(n[o.getAttribute("name")||"default"]=o.innerHTML)}let u;try{u=this.hasAttribute("props")?y(JSON.parse(this.getAttribute("props"))):{}}catch(o){let i=this.getAttribute("component-url")||"<unknown>",v=this.getAttribute("component-export");throw v&&(i+=` (export ${v})`),console.error(`[hydrate] Error parsing props for component ${i}`,this.getAttribute("props"),o),o}let h;await this.hydrator(this)(this.Component,u,n,{client:this.getAttribute("client")}),this.removeAttribute("ssr"),this.dispatchEvent(new CustomEvent("astro:hydrate"))});l(this,"unmount",()=>{this.isConnected||this.dispatchEvent(new CustomEvent("astro:unmount"))})}disconnectedCallback(){document.removeEventListener("astro:after-swap",this.unmount),document.addEventListener("astro:after-swap",this.unmount,{once:!0})}connectedCallback(){if(!this.hasAttribute("await-children")||document.readyState==="interactive"||document.readyState==="complete")this.childrenConnectedCallback();else{let e=()=>{document.removeEventListener("DOMContentLoaded",e),r.disconnect(),this.childrenConnectedCallback()},r=new MutationObserver(()=>{var n;((n=this.lastChild)==null?void 0:n.nodeType)===Node.COMMENT_NODE&&this.lastChild.nodeValue==="astro:end"&&(this.lastChild.remove(),e())});r.observe(this,{childList:!0}),document.addEventListener("DOMContentLoaded",e)}}async childrenConnectedCallback(){let e=this.getAttribute("before-hydration-url");e&&await import(e),this.start()}getRetryImportUrl(e){let r=new URL(e,document.baseURI);return r.searchParams.set("astro-retry",Date.now().toString()),r.toString()}async importWithRetry(e){try{return await import(e)}catch(r){return await new Promise(n=>setTimeout(n,1e3)),import(this.getRetryImportUrl(e))}}handleHydrationError(e){let r=this.getAttribute("component-url"),n=new CustomEvent("astro:hydration-error",{cancelable:!0,bubbles:!0,composed:!0,detail:{error:e,componentUrl:r}});this.dispatchEvent(n)&&console.error(`[astro-island] Error hydrating ${r}`,e)}async start(){let e=JSON.parse(this.getAttribute("opts")),r=this.getAttribute("client");if(Astro[r]===void 0){window.addEventListener(`astro:${r}`,()=>this.start(),{once:!0});return}try{await Astro[r](async()=>{let n=this.getAttribute("renderer-url");try{let[d,{default:u}]=await Promise.all([this.importWithRetry(this.getAttribute("component-url")),n?this.importWithRetry(n):Promise.resolve({default:()=>()=>{}})]),h=this.getAttribute("component-export")||"default";if(h.includes(".")){this.Component=d;for(let m of h.split(".")){if(E.has(m)||!this.Component||typeof this.Component!="object"&&typeof this.Component!="function"||!Object.hasOwn(this.Component,m))throw new Error(`Invalid component export path: ${h}`);this.Component=this.Component[m]}}else{if(E.has(h))throw new Error(`Invalid component export path: ${h}`);this.Component=d[h]}return this.hydrator=u,this.hydrate}catch(d){return this.handleHydrationError(d),()=>{}}},e,this)}catch(n){this.handleHydrationError(n)}}attributeChangedCallback(){this.hydrate()}}l(f,"observedAttributes",["props"]),customElements.get("astro-island")||customElements.define("astro-island",f)}})();</script><astro-island uid="Z2eqQeQ" prefix="r7" component-url="/Aarishta/_astro/Starry.U_sjZgBA.js" component-export="default" renderer-url="/Aarishta/_astro/client.CoEKgNhQ.js" props="{&quot;minSize&quot;:[0,0.5],&quot;maxSize&quot;:[0,1.5],&quot;opacity&quot;:[0,0.5],&quot;particleDensity&quot;:[0,100],&quot;className&quot;:[0,&quot;fixed h-full w-full&quot;],&quot;data-astro-transition-scope&quot;:[0,&quot;astro-wugk46rw-2&quot;],&quot;data-astro-transition-persist&quot;:[0,&quot;starry-bg&quot;]}" ssr client="idle" opts="{&quot;name&quot;:&quot;Starry&quot;,&quot;value&quot;:true}" data-astro-transition-scope="astro-wugk46rw-2" data-astro-transition-persist="starry-bg"></astro-island><header data-astro-transition-persist="site-header" data-astro-transition-scope="astro-znvvpdic-4" id="header" class="fixed top-0 z-50 hidden h-16 w-full md:block print:hidden"><div class="container mx-auto h-full"><div class="relative flex h-full items-center justify-between"><a href="/Aarishta/" class="font-bold uppercase text-black/80 duration-300 hover:text-black hover:transition-colors dark:text-white/80 dark:hover:text-white">Athena</a><nav class="hidden items-center gap-6 text-sm md:flex"><a href="/Aarishta/" data-href="/Aarishta/" class="flex h-8 items-center justify-center rounded-full px-3 duration-300 hover:transition-colors">Home</a><a href="/Aarishta/about/" data-href="/Aarishta/about/" class="flex h-8 items-center justify-center rounded-full px-3 duration-300 hover:transition-colors">About</a><a href="/Aarishta/projects/" data-href="/Aarishta/projects/" class="flex h-8 items-center justify-center rounded-full px-3 duration-300 hover:transition-colors">Projects</a></nav><div class="flex gap-2"><button id="headerThemeToggle" aria-label="Toggle light and dark theme" class="flex size-9 rounded-full p-2 items-center justify-center text-black/80 dark:text-white/80 bg-transparent hover:bg-black/20 dark:hover:bg-white/20 stroke-current hover:stroke-black hover:dark:stroke-white border border-black/25 dark:border-white/25 hover:transition-colors duration-300"><svg width="1em" height="1em" class="block size-full dark:hidden" data-icon="sun"><symbol id="ai:local:sun" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M17 12a5 5 0 1 1-10 0 5 5 0 0 1 10 0M12 2v1.5m0 17V22m7.07-2.929-1.06-1.06M5.99 5.989 4.928 4.93M22 12h-1.5m-17 0H2m17.071-7.071-1.06 1.06M5.99 18.011l-1.06 1.06" color="currentColor"/></symbol><use href="#ai:local:sun"></use></svg><svg width="1em" height="1em" class="hidden size-full dark:block" data-icon="moon"><symbol id="ai:local:moon" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M21.5 14.078A8.557 8.557 0 0 1 9.922 2.5C5.668 3.497 2.5 7.315 2.5 11.873a9.627 9.627 0 0 0 9.627 9.627c4.558 0 8.376-3.168 9.373-7.422" color="currentColor"/></symbol><use href="#ai:local:moon"></use></svg></button><script>(function(){const id = "headerThemeToggle";
+
+  const setToggleListener = () => {
+    const toggleBtn = document.getElementById(id);
+    // The header/navbar this lives in now persist across client-side
+    // navigation (transition:persist), so this same button element is
+    // never recreated - only re-run through this setup function again
+    // on every astro:after-swap. Without this guard, that would attach
+    // a second (third, fourth...) click listener to the same
+    // never-removed element instead of just re-binding a fresh one.
+    if (!toggleBtn || toggleBtn.dataset.bound === "true") return;
+    toggleBtn.dataset.bound = "true";
+
+    const handleToggleClick = () => {
+      const element = document.documentElement;
+      element.classList.toggle("dark");
+
+      const isDark = element.classList.contains("dark");
+      localStorage.setItem("theme", isDark ? "dark" : "light");
+    };
+
+    toggleBtn.addEventListener("click", handleToggleClick);
+  };
+
+  setToggleListener();
+
+  document.addEventListener("astro:after-swap", setToggleListener);
+})();</script><button id="headerReducedMotionToggle" aria-label="Toggle reduced motion" class="flex size-9 rounded-full p-2 items-center justify-center text-black/80 dark:text-white/80 bg-transparent hover:bg-black/20 dark:hover:bg-white/20 stroke-current hover:stroke-black hover:dark:stroke-white border border-black/25 dark:border-white/25 hover:transition-colors duration-300"><svg width="1em" height="1em" class="block size-full rm:hidden" data-icon="motion"><symbol id="ai:local:motion" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M2 12h4l2-7 4 14 2-7h4l2 3h2" color="currentColor"/></symbol><use href="#ai:local:motion"></use></svg><svg width="1em" height="1em" class="hidden size-full rm:block" data-icon="motion-off"><symbol id="ai:local:motion-off" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M2 12h4l2-7 4 14 2-7h4l2 3h2M4 4l16 16" color="currentColor"/></symbol><use href="#ai:local:motion-off"></use></svg></button><script>(function(){const id = "headerReducedMotionToggle";
+
+  const setReducedMotionToggleListener = () => {
+    const toggleBtn = document.getElementById(id);
+    // The header/navbar this lives in now persist across client-side
+    // navigation (transition:persist), so this same button element is
+    // never recreated - only re-run through this setup function again
+    // on every astro:after-swap. Without this guard, that would attach
+    // a second (third, fourth...) click listener to the same
+    // never-removed element instead of just re-binding a fresh one.
+    if (!toggleBtn || toggleBtn.dataset.bound === "true") return;
+    toggleBtn.dataset.bound = "true";
+
+    const handleToggleClick = () => {
+      const element = document.documentElement;
+      element.classList.toggle("reduce-motion");
+
+      const isReduced = element.classList.contains("reduce-motion");
+      localStorage.setItem("reducedMotion", isReduced ? "true" : "false");
+    };
+
+    toggleBtn.addEventListener("click", handleToggleClick);
+  };
+
+  setReducedMotionToggleListener();
+
+  document.addEventListener("astro:after-swap", setReducedMotionToggleListener);
+})();</script></div></div></div></header><script type="module">var e=null,t=!1;function n(){e=null;let n=document.getElementById(`header`);if(!n)return;let r=window.scrollY>0;r!==t&&(t=r,n.classList.toggle(`scrolled`,r))}function r(){e===null&&(e=requestAnimationFrame(n))}function i(){window.removeEventListener(`scroll`,r),window.addEventListener(`scroll`,r,{passive:!0}),t=!1,n()}i();function a(){let e=window.location.pathname,t=`/`+(e.match(/[^/]+/g)?.[0]??``);document.querySelectorAll(`#header nav a[data-href]`).forEach(n=>{let r=n.getAttribute(`data-href`),i=e===r||t===r;n.classList.toggle(`active`,i)})}a(),document.addEventListener(`astro:after-swap`,i),document.addEventListener(`astro:after-swap`,a);</script><!--
+  No transition:name here (unlike Header's site-header) - Chromium
+  breaks backdrop-filter on a DESCENDANT of any element that has a
+  view-transition-name assigned (which is what transition:name does),
+  even outside of an active transition. That's exactly this element's
+  structure: the frosted-glass pill below is nested inside this
+  wrapper, not applied to it directly. Header is fine because it
+  applies backdrop-blur-sm to the SAME element that carries
+  transition:name, and the bug is specifically about descendants, not
+  the named element itself. transition:persist alone (kept below)
+  still preserves this element's DOM node and state across page
+  navigations - it's transition:name specifically that triggers the
+  browser's view-transition capture behavior responsible for the bug,
+  and removing it costs nothing visually since this element persists
+  (and so never has anything to cross-fade from/to in the first place).
+--><div data-astro-transition-persist="astro-xqnp5chy-5" id="navbar" class="fixed bottom-2 left-1/2 z-50 block h-16 -translate-x-1/2 sm:hidden"><div class="container mx-auto"><div class="flex items-center gap-4 rounded-full border border-black/25 bg-white/80 px-4 py-2 shadow-lg saturate-200 backdrop-blur-sm dark:border-white/25 dark:bg-black/50"><!-- Navigation links --><nav class="navbar-links flex gap-2"><a href="/Aarishta/" data-href="/Aarishta/" class="flex items-center justify-center duration-300 hover:transition-colors">Home</a><a href="/Aarishta/about/" data-href="/Aarishta/about/" class="flex items-center justify-center duration-300 hover:transition-colors">About</a><a href="/Aarishta/projects/" data-href="/Aarishta/projects/" class="flex items-center justify-center duration-300 hover:transition-colors">Projects</a></nav><!-- Separator --><div class="h-6 w-0.5 bg-black/25 dark:bg-white/25"></div><!-- Action Buttons --><div class="flex gap-2"><button id="navbarThemeToggle" aria-label="Toggle light and dark theme" class="flex size-9 rounded-full p-2 items-center justify-center text-black/80 dark:text-white/80 bg-transparent hover:bg-black/20 dark:hover:bg-white/20 stroke-current hover:stroke-black hover:dark:stroke-white border border-black/25 dark:border-white/25 hover:transition-colors duration-300"><svg width="1em" height="1em" viewBox="0 0 24 24" class="block size-full dark:hidden" data-icon="sun"><use href="#ai:local:sun"></use></svg><svg width="1em" height="1em" viewBox="0 0 24 24" class="hidden size-full dark:block" data-icon="moon"><use href="#ai:local:moon"></use></svg></button><script>(function(){const id = "navbarThemeToggle";
+
+  const setToggleListener = () => {
+    const toggleBtn = document.getElementById(id);
+    // The header/navbar this lives in now persist across client-side
+    // navigation (transition:persist), so this same button element is
+    // never recreated - only re-run through this setup function again
+    // on every astro:after-swap. Without this guard, that would attach
+    // a second (third, fourth...) click listener to the same
+    // never-removed element instead of just re-binding a fresh one.
+    if (!toggleBtn || toggleBtn.dataset.bound === "true") return;
+    toggleBtn.dataset.bound = "true";
+
+    const handleToggleClick = () => {
+      const element = document.documentElement;
+      element.classList.toggle("dark");
+
+      const isDark = element.classList.contains("dark");
+      localStorage.setItem("theme", isDark ? "dark" : "light");
+    };
+
+    toggleBtn.addEventListener("click", handleToggleClick);
+  };
+
+  setToggleListener();
+
+  document.addEventListener("astro:after-swap", setToggleListener);
+})();</script><button id="navbarReducedMotionToggle" aria-label="Toggle reduced motion" class="flex size-9 rounded-full p-2 items-center justify-center text-black/80 dark:text-white/80 bg-transparent hover:bg-black/20 dark:hover:bg-white/20 stroke-current hover:stroke-black hover:dark:stroke-white border border-black/25 dark:border-white/25 hover:transition-colors duration-300"><svg width="1em" height="1em" viewBox="0 0 24 24" class="block size-full rm:hidden" data-icon="motion"><use href="#ai:local:motion"></use></svg><svg width="1em" height="1em" viewBox="0 0 24 24" class="hidden size-full rm:block" data-icon="motion-off"><use href="#ai:local:motion-off"></use></svg></button><script>(function(){const id = "navbarReducedMotionToggle";
+
+  const setReducedMotionToggleListener = () => {
+    const toggleBtn = document.getElementById(id);
+    // The header/navbar this lives in now persist across client-side
+    // navigation (transition:persist), so this same button element is
+    // never recreated - only re-run through this setup function again
+    // on every astro:after-swap. Without this guard, that would attach
+    // a second (third, fourth...) click listener to the same
+    // never-removed element instead of just re-binding a fresh one.
+    if (!toggleBtn || toggleBtn.dataset.bound === "true") return;
+    toggleBtn.dataset.bound = "true";
+
+    const handleToggleClick = () => {
+      const element = document.documentElement;
+      element.classList.toggle("reduce-motion");
+
+      const isReduced = element.classList.contains("reduce-motion");
+      localStorage.setItem("reducedMotion", isReduced ? "true" : "false");
+    };
+
+    toggleBtn.addEventListener("click", handleToggleClick);
+  };
+
+  setReducedMotionToggleListener();
+
+  document.addEventListener("astro:after-swap", setReducedMotionToggleListener);
+})();</script></div></div></div></div><script type="module">function e(){let e=window.location.pathname,t=`/`+(e.match(/[^/]+/g)?.[0]??``);document.querySelectorAll(`#navbar nav a[data-href]`).forEach(n=>{let r=n.getAttribute(`data-href`),i=e===r||t===r;n.classList.toggle(`active`,i)})}e(),document.addEventListener(`astro:after-swap`,e);</script><main data-astro-transition-scope="astro-itre4v7m-3" class="z-10"><div class="container mx-auto my-24 xl:my-5"><header class="flex flex-col items-center sm:mt-24"><h1 class="mb-6 text-center">About Me</h1></header><div class="space-y-8 md:col-span-4"><section class="flex flex-col gap-2"><div class="flex items-center gap-2"><div class="text-base font-bold text-black dark:text-white">Experience</div><div class="h-0.5 flex-grow bg-black/25 dark:bg-white/25"></div></div><div class="grid grid-cols-1 gap-x-4 sm:grid-cols-[auto_auto_1fr] sm:gap-x-8"><div class="mt-1 text-xs font-bold text-black/50 dark:text-white/50"><time datetime="2025-01-01">2025</time><span class="mx-1">-</span><time>Present</time></div><div class="relative hidden justify-center sm:flex"><div class="absolute top-2 h-full w-px bg-black/25 dark:bg-white/25"></div><div class="relative z-10 mt-2 h-3 w-3 rounded-full bg-black dark:bg-white"></div></div><div class="mb-8"><div class="font-bold text-black dark:text-white">Au Pair &amp; Ambassador <span>@</span>Cultural Care Au Pair, USA</div><p class="mt-2 text-sm text-black/80 dark:text-white/80">Waunakee, WI, USA  -  On-site</p><div class="mt-2 space-y-4 text-sm"><script>(()=>{var a=(s,i,o)=>{let r=async()=>{await(await s())()},t=typeof i.value=="object"?i.value:void 0,c={rootMargin:t==null?void 0:t.rootMargin},n=new IntersectionObserver(e=>{for(let l of e)if(l.isIntersecting){n.disconnect(),r();break}},c);for(let e of o.children)n.observe(e)};(self.Astro||(self.Astro={})).visible=a;window.dispatchEvent(new Event("astro:visible"));})();</script><astro-island uid="Z1DMaG1" prefix="r8" component-url="/Aarishta/_astro/ExpandButton.DKqrScMm.js" component-export="default" renderer-url="/Aarishta/_astro/client.CoEKgNhQ.js" props="{}" ssr client="visible" opts="{&quot;name&quot;:&quot;ExpandButton&quot;,&quot;value&quot;:true}" await-children><div class="relative"><div class="relative flex flex-col gap-4 overflow-hidden" style="height:50px"><astro-slot><div class="mt-2 text-sm"><div class="font-medium text-black/80 dark:text-white/80">Responsibilities:</div><ul class="list-inside list-disc space-y-1 text-black/50 dark:text-white/50"><li>Mentored other au pairs needing support or guidance before traveling.</li><li>Oversaw daily activities and developmental needs of two host children.</li></ul></div></astro-slot><div class="absolute bottom-0 h-12 w-full bg-gradient-to-t from-white dark:from-black"></div></div><button class="group/more flex w-fit cursor-pointer items-center justify-center gap-1.5 text-xs text-black/80 underline duration-300 hover:text-black hover:transition-colors dark:text-white/80 dark:hover:text-white"><span>Show more</span><svg class="h-4 w-4 duration-200 ease-out group-hover/more:translate-y-0.5" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg></button></div><!--astro:end--></astro-island></div></div><div class="mt-1 text-xs font-bold text-black/50 dark:text-white/50"><time datetime="2024-06-01">2024</time><span class="mx-1">-</span><time datetime="2025-01-31">2025</time></div><div class="relative hidden justify-center sm:flex"><div class="absolute top-2 h-full w-px bg-black/25 dark:bg-white/25"></div><div class="relative z-10 mt-2 h-3 w-3 rounded-full bg-black dark:bg-white"></div></div><div class="mb-8"><div class="font-bold text-black dark:text-white">Online TEFL/ESL Educator <span>@</span>Preply</div><p class="mt-2 text-sm text-black/80 dark:text-white/80">Durban, South Africa  -  Remote</p><div class="mt-2 space-y-4 text-sm"><astro-island uid="ZHXGRj" prefix="r9" component-url="/Aarishta/_astro/ExpandButton.DKqrScMm.js" component-export="default" renderer-url="/Aarishta/_astro/client.CoEKgNhQ.js" props="{}" ssr client="visible" opts="{&quot;name&quot;:&quot;ExpandButton&quot;,&quot;value&quot;:true}" await-children><div class="relative"><div class="relative flex flex-col gap-4 overflow-hidden" style="height:50px"><astro-slot><div class="mt-2 text-sm"><div class="font-medium text-black/80 dark:text-white/80">Responsibilities:</div><ul class="list-inside list-disc space-y-1 text-black/50 dark:text-white/50"><li>Researched innovative pedagogical methods for teaching English as a second language.</li><li>Incorporated intersectionality to compare historic texts with contemporary cultural contexts.</li><li>Integrated technology into lessons to engage students and diversify instructional methods.</li></ul></div></astro-slot><div class="absolute bottom-0 h-12 w-full bg-gradient-to-t from-white dark:from-black"></div></div><button class="group/more flex w-fit cursor-pointer items-center justify-center gap-1.5 text-xs text-black/80 underline duration-300 hover:text-black hover:transition-colors dark:text-white/80 dark:hover:text-white"><span>Show more</span><svg class="h-4 w-4 duration-200 ease-out group-hover/more:translate-y-0.5" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg></button></div><!--astro:end--></astro-island></div></div><div class="mt-1 text-xs font-bold text-black/50 dark:text-white/50"><time datetime="2024-02-01">2024</time><span class="mx-1">-</span><time datetime="2025-11-30">2025</time></div><div class="relative hidden justify-center sm:flex"><div class="absolute top-2 h-full w-px bg-black/25 dark:bg-white/25"></div><div class="relative z-10 mt-2 h-3 w-3 rounded-full bg-black dark:bg-white"></div></div><div class="mb-8"><div class="font-bold text-black dark:text-white">ECD Practitioner Volunteer <span>@</span>The Bright Eyes Trust</div><p class="mt-2 text-sm text-black/80 dark:text-white/80">Durban, Musgrave, South Africa  -  On-site</p><div class="mt-2 space-y-4 text-sm"><astro-island uid="jJcI8" prefix="r10" component-url="/Aarishta/_astro/ExpandButton.DKqrScMm.js" component-export="default" renderer-url="/Aarishta/_astro/client.CoEKgNhQ.js" props="{}" ssr client="visible" opts="{&quot;name&quot;:&quot;ExpandButton&quot;,&quot;value&quot;:true}" await-children><div class="relative"><div class="relative flex flex-col gap-4 overflow-hidden" style="height:50px"><astro-slot><div class="mt-2 text-sm"><div class="font-medium text-black/80 dark:text-white/80">Responsibilities:</div><ul class="list-inside list-disc space-y-1 text-black/50 dark:text-white/50"><li>Delivered critical early intervention services to visually impaired young children.</li><li>Implemented specialized interventions promoting healthy physical, cognitive, and emotional development.</li><li>Fostered exploration and curiosity in visually impaired children to enhance confidence.</li></ul></div></astro-slot><div class="absolute bottom-0 h-12 w-full bg-gradient-to-t from-white dark:from-black"></div></div><button class="group/more flex w-fit cursor-pointer items-center justify-center gap-1.5 text-xs text-black/80 underline duration-300 hover:text-black hover:transition-colors dark:text-white/80 dark:hover:text-white"><span>Show more</span><svg class="h-4 w-4 duration-200 ease-out group-hover/more:translate-y-0.5" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg></button></div><!--astro:end--></astro-island></div></div><div class="mt-1 text-xs font-bold text-black/50 dark:text-white/50"><time datetime="2022-06-01">2022</time><span class="mx-1">-</span><time datetime="2022-07-31">2022</time></div><div class="relative hidden justify-center sm:flex"><div class="absolute top-2 h-full w-px bg-black/25 dark:bg-white/25"></div><div class="relative z-10 mt-2 h-3 w-3 rounded-full bg-black dark:bg-white"></div></div><div class="mb-8"><div class="font-bold text-black dark:text-white">Examination Assistant <span>@</span>Port Shepstone Senior Primary</div><p class="mt-2 text-sm text-black/80 dark:text-white/80">Port Shepstone, South Africa  -  On-site</p><div class="mt-2 space-y-4 text-sm"><astro-island uid="Z11a2wL" prefix="r11" component-url="/Aarishta/_astro/ExpandButton.DKqrScMm.js" component-export="default" renderer-url="/Aarishta/_astro/client.CoEKgNhQ.js" props="{}" ssr client="visible" opts="{&quot;name&quot;:&quot;ExpandButton&quot;,&quot;value&quot;:true}" await-children><div class="relative"><div class="relative flex flex-col gap-4 overflow-hidden" style="height:50px"><astro-slot><div class="mt-2 text-sm"><div class="font-medium text-black/80 dark:text-white/80">Responsibilities:</div><ul class="list-inside list-disc space-y-1 text-black/50 dark:text-white/50"><li>Maintained meticulous records of scripts received, marks recorded, and arrangements per district and subject.</li><li>Controlled distribution and scanning processes for scripts to enhance operational efficiency.</li><li>Executed script dispatching and created comprehensive marking center files.</li></ul></div></astro-slot><div class="absolute bottom-0 h-12 w-full bg-gradient-to-t from-white dark:from-black"></div></div><button class="group/more flex w-fit cursor-pointer items-center justify-center gap-1.5 text-xs text-black/80 underline duration-300 hover:text-black hover:transition-colors dark:text-white/80 dark:hover:text-white"><span>Show more</span><svg class="h-4 w-4 duration-200 ease-out group-hover/more:translate-y-0.5" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg></button></div><!--astro:end--></astro-island></div></div><div class="mt-1 text-xs font-bold text-black/50 dark:text-white/50"><time datetime="2021-11-01">2021</time><span class="mx-1">-</span><time datetime="2022-03-31">2022</time></div><div class="relative hidden justify-center sm:flex"><div class="absolute top-2 h-full w-px bg-black/25 dark:bg-white/25"></div><div class="relative z-10 mt-2 h-3 w-3 rounded-full bg-black dark:bg-white"></div></div><div class="mb-8"><div class="font-bold text-black dark:text-white">Education Assistant <span>@</span>Port Shepstone Primary School</div><p class="mt-2 text-sm text-black/80 dark:text-white/80">Port Shepstone, South Africa  -  On-site</p><div class="mt-2 space-y-4 text-sm"><astro-island uid="ZBvhWw" prefix="r12" component-url="/Aarishta/_astro/ExpandButton.DKqrScMm.js" component-export="default" renderer-url="/Aarishta/_astro/client.CoEKgNhQ.js" props="{}" ssr client="visible" opts="{&quot;name&quot;:&quot;ExpandButton&quot;,&quot;value&quot;:true}" await-children><div class="relative"><div class="relative flex flex-col gap-4 overflow-hidden" style="height:50px"><astro-slot><div class="mt-2 text-sm"><div class="font-medium text-black/80 dark:text-white/80">Responsibilities:</div><ul class="list-inside list-disc space-y-1 text-black/50 dark:text-white/50"><li>Facilitated educational and social development for learners in a safe and clean classroom.</li><li>Supervised group activities to promote engagement and drafted lesson plans.</li><li>Served as relief staff, corrected assignments and ensured continuity in educational delivery.</li></ul></div></astro-slot><div class="absolute bottom-0 h-12 w-full bg-gradient-to-t from-white dark:from-black"></div></div><button class="group/more flex w-fit cursor-pointer items-center justify-center gap-1.5 text-xs text-black/80 underline duration-300 hover:text-black hover:transition-colors dark:text-white/80 dark:hover:text-white"><span>Show more</span><svg class="h-4 w-4 duration-200 ease-out group-hover/more:translate-y-0.5" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg></button></div><!--astro:end--></astro-island></div></div><div class="mt-1 text-xs font-bold text-black/50 dark:text-white/50"><time datetime="2020-12-01">2020</time><span class="mx-1">-</span><time datetime="2021-03-31">2021</time></div><div class="relative hidden justify-center sm:flex"><div class="relative z-10 mt-2 h-3 w-3 rounded-full bg-black dark:bg-white"></div></div><div class><div class="font-bold text-black dark:text-white">Education Assistant <span>@</span>Marburg Primary School</div><p class="mt-2 text-sm text-black/80 dark:text-white/80">Marburg, South Africa  -  On-site</p><div class="mt-2 space-y-4 text-sm"><astro-island uid="xXxg3" prefix="r13" component-url="/Aarishta/_astro/ExpandButton.DKqrScMm.js" component-export="default" renderer-url="/Aarishta/_astro/client.CoEKgNhQ.js" props="{}" ssr client="visible" opts="{&quot;name&quot;:&quot;ExpandButton&quot;,&quot;value&quot;:true}" await-children><div class="relative"><div class="relative flex flex-col gap-4 overflow-hidden" style="height:50px"><astro-slot><div class="mt-2 text-sm"><div class="font-medium text-black/80 dark:text-white/80">Responsibilities:</div><ul class="list-inside list-disc space-y-1 text-black/50 dark:text-white/50"></ul></div></astro-slot><div class="absolute bottom-0 h-12 w-full bg-gradient-to-t from-white dark:from-black"></div></div><button class="group/more flex w-fit cursor-pointer items-center justify-center gap-1.5 text-xs text-black/80 underline duration-300 hover:text-black hover:transition-colors dark:text-white/80 dark:hover:text-white"><span>Show more</span><svg class="h-4 w-4 duration-200 ease-out group-hover/more:translate-y-0.5" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg></button></div><!--astro:end--></astro-island></div></div></div></section><section class="flex flex-col gap-2"><div class="flex items-center gap-2"><div class="text-base font-bold text-black dark:text-white">Education</div><div class="h-0.5 flex-grow bg-black/25 dark:bg-white/25"></div></div><ul class="space-y-4"><li class="flex flex-col md:flex-row md:items-baseline"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="mr-2 hidden h-5 w-5 md:inline-block"><path d="M21.42 10.922a1 1 0 0 0-.019-1.838L12.83 5.18a2 2 0 0 0-1.66 0L2.6 9.08a1 1 0 0 0 0 1.832l8.57 3.908a2 2 0 0 0 1.66 0z"></path><path d="M22 10v6"></path><path d="M6 12.5V16a6 3 0 0 0 12 0v-3.5"></path></svg><div class="relative w-full"><time class="mb-1 text-xs font-bold text-black/50 dark:text-white/50 md:absolute md:right-0 md:top-0">2025</time><div class="text-base font-medium leading-snug text-black dark:text-white"><span>STADIO</span></div><p class="mt-1 text-sm text-black/80 dark:text-white/80">Bachelor of Education: Intermediate Phase Teaching (International)</p><div class="mt-4 text-sm"><ul class="space-y-1 text-black/50 dark:text-white/50"><li>South African Studies Abroad on Intermediate Phase Teaching (Grades 4-7). Majored in Science, Mathematics and Special Needs Education. Research: Qualitative, quantitative and mixed methods data.</li></ul></div></div></li><li class="flex flex-col md:flex-row md:items-baseline"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="mr-2 hidden h-5 w-5 md:inline-block"><path d="M21.42 10.922a1 1 0 0 0-.019-1.838L12.83 5.18a2 2 0 0 0-1.66 0L2.6 9.08a1 1 0 0 0 0 1.832l8.57 3.908a2 2 0 0 0 1.66 0z"></path><path d="M22 10v6"></path><path d="M6 12.5V16a6 3 0 0 0 12 0v-3.5"></path></svg><div class="relative w-full"><time class="mb-1 text-xs font-bold text-black/50 dark:text-white/50 md:absolute md:right-0 md:top-0">2024</time><div class="text-base font-medium leading-snug text-black dark:text-white"><span>STADIO</span></div><p class="mt-1 text-sm text-black/80 dark:text-white/80">Higher Certificate in Early Childhood Development: Early Childhood Education and Care</p></div></li><li class="flex flex-col md:flex-row md:items-baseline"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="mr-2 hidden h-5 w-5 md:inline-block"><path d="M21.42 10.922a1 1 0 0 0-.019-1.838L12.83 5.18a2 2 0 0 0-1.66 0L2.6 9.08a1 1 0 0 0 0 1.832l8.57 3.908a2 2 0 0 0 1.66 0z"></path><path d="M22 10v6"></path><path d="M6 12.5V16a6 3 0 0 0 12 0v-3.5"></path></svg><div class="relative w-full"><time class="mb-1 text-xs font-bold text-black/50 dark:text-white/50 md:absolute md:right-0 md:top-0">2024</time><div class="text-base font-medium leading-snug text-black dark:text-white"><span>UPSKILLIST</span></div><p class="mt-1 text-sm text-black/80 dark:text-white/80">Diploma In Childcare Training: Early Childhood Care and Education (International)</p></div></li><li class="flex flex-col md:flex-row md:items-baseline"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="mr-2 hidden h-5 w-5 md:inline-block"><path d="M21.42 10.922a1 1 0 0 0-.019-1.838L12.83 5.18a2 2 0 0 0-1.66 0L2.6 9.08a1 1 0 0 0 0 1.832l8.57 3.908a2 2 0 0 0 1.66 0z"></path><path d="M22 10v6"></path><path d="M6 12.5V16a6 3 0 0 0 12 0v-3.5"></path></svg><div class="relative w-full"><time class="mb-1 text-xs font-bold text-black/50 dark:text-white/50 md:absolute md:right-0 md:top-0">2019</time><div class="text-base font-medium leading-snug text-black dark:text-white"><span>Port Shepstone Secondary School</span></div><p class="mt-1 text-sm text-black/80 dark:text-white/80">Matric</p><div class="mt-4 text-sm"><ul class="space-y-1 text-black/50 dark:text-white/50"><li>Awarded English DeBeers, 2019. Certificate of Distinction: Life Orientation.</li></ul></div></div></li></ul></section><section class="flex flex-col gap-2"><div class="flex items-center gap-2"><div class="text-base font-bold text-black dark:text-white">Skills</div><div class="h-0.5 flex-grow bg-black/25 dark:bg-white/25"></div></div><div class="flex flex-col space-y-4"><div class="flex flex-col sm:flex-row sm:items-center"><span class="w-full text-sm font-bold text-black/80 dark:text-white/80 sm:w-48">Languages</span><ul class="flex flex-1 flex-wrap gap-2"><li class="inline-flex items-center rounded-md border border-black/25 bg-neutral-200/50 px-2 py-1 text-xs text-black/80 dark:border-white/25 dark:bg-neutral-800/50 dark:text-white/80">English (Native/Bilingual)</li><li class="inline-flex items-center rounded-md border border-black/25 bg-neutral-200/50 px-2 py-1 text-xs text-black/80 dark:border-white/25 dark:bg-neutral-800/50 dark:text-white/80">South African Sign Language (Full Professional)</li><li class="inline-flex items-center rounded-md border border-black/25 bg-neutral-200/50 px-2 py-1 text-xs text-black/80 dark:border-white/25 dark:bg-neutral-800/50 dark:text-white/80">Afrikaans (Professional)</li><li class="inline-flex items-center rounded-md border border-black/25 bg-neutral-200/50 px-2 py-1 text-xs text-black/80 dark:border-white/25 dark:bg-neutral-800/50 dark:text-white/80">IsiZulu (Limited)</li></ul></div><div class="flex flex-col sm:flex-row sm:items-center"><span class="w-full text-sm font-bold text-black/80 dark:text-white/80 sm:w-48">Tools</span><ul class="flex flex-1 flex-wrap gap-2"><li class="inline-flex items-center rounded-md border border-black/25 bg-neutral-200/50 px-2 py-1 text-xs text-black/80 dark:border-white/25 dark:bg-neutral-800/50 dark:text-white/80">Microsoft Suite</li></ul></div><div class="flex flex-col sm:flex-row sm:items-center"><span class="w-full text-sm font-bold text-black/80 dark:text-white/80 sm:w-48">Technical &amp; Analytical</span><ul class="flex flex-1 flex-wrap gap-2"><li class="inline-flex items-center rounded-md border border-black/25 bg-neutral-200/50 px-2 py-1 text-xs text-black/80 dark:border-white/25 dark:bg-neutral-800/50 dark:text-white/80">Lesson design</li><li class="inline-flex items-center rounded-md border border-black/25 bg-neutral-200/50 px-2 py-1 text-xs text-black/80 dark:border-white/25 dark:bg-neutral-800/50 dark:text-white/80">Analytical reporting and presentation</li></ul></div><div class="flex flex-col sm:flex-row sm:items-center"><span class="w-full text-sm font-bold text-black/80 dark:text-white/80 sm:w-48">Leadership &amp; Management</span><ul class="flex flex-1 flex-wrap gap-2"><li class="inline-flex items-center rounded-md border border-black/25 bg-neutral-200/50 px-2 py-1 text-xs text-black/80 dark:border-white/25 dark:bg-neutral-800/50 dark:text-white/80">Teamwork and collaboration</li></ul></div><div class="flex flex-col sm:flex-row sm:items-center"><span class="w-full text-sm font-bold text-black/80 dark:text-white/80 sm:w-48">Soft Skills</span><ul class="flex flex-1 flex-wrap gap-2"><li class="inline-flex items-center rounded-md border border-black/25 bg-neutral-200/50 px-2 py-1 text-xs text-black/80 dark:border-white/25 dark:bg-neutral-800/50 dark:text-white/80">Rapid learning</li><li class="inline-flex items-center rounded-md border border-black/25 bg-neutral-200/50 px-2 py-1 text-xs text-black/80 dark:border-white/25 dark:bg-neutral-800/50 dark:text-white/80">Detail-oriented approach</li><li class="inline-flex items-center rounded-md border border-black/25 bg-neutral-200/50 px-2 py-1 text-xs text-black/80 dark:border-white/25 dark:bg-neutral-800/50 dark:text-white/80">Reliable and dependable</li><li class="inline-flex items-center rounded-md border border-black/25 bg-neutral-200/50 px-2 py-1 text-xs text-black/80 dark:border-white/25 dark:bg-neutral-800/50 dark:text-white/80">Flexible mindset</li></ul></div></div></section></div></div></main><footer class="relative mt-auto hidden py-8 print:hidden md:block"><p class="text-center text-sm text-black/40 dark:text-white/40">&copy; 2026 Athena. All rights reserved.</p></footer></body></html>
