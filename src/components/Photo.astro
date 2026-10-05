@@ -1,0 +1,61 @@
+---
+// Was previously a "use client" React component hydrated with
+// client:load, but it has no state, no event handlers, and no
+// interactivity at all - just a static <img> plus an SVG ring animated
+// entirely in CSS (see .avatar-ring-rotate/.avatar-ring-dash in
+// global.css). Shipping it as a React island meant the browser had to
+// download and execute react + react-dom to hydrate markup that never
+// changes, right in the same window where nav clicks are most likely
+// (immediately after landing on the page). As a plain .astro
+// component it renders straight to static HTML with zero client JS,
+// so there's nothing competing with the main thread for a nav click to
+// wait behind.
+interface Props {
+  imageSrc: string;
+  imageAlt: string;
+}
+
+const { imageSrc, imageAlt } = Astro.props;
+---
+
+<div class="relative h-full w-full">
+  <div class="relative flex items-center justify-center">
+    {/* Image */}
+    <div
+      class="absolute h-[298px] w-[298px] p-10 mix-blend-lighten xl:h-[498px] xl:w-[498px]"
+    >
+      <img
+        src={imageSrc}
+        alt={imageAlt}
+        width="1000"
+        height="1000"
+        loading="eager"
+        decoding="sync"
+        fetchpriority="high"
+        class="h-full w-full rounded-full object-contain"
+      />
+    </div>
+
+    {/* Circle - see .avatar-ring-rotate/.avatar-ring-dash in
+        global.css for the actual keyframe animations. */}
+    <svg
+      class="h-[300px] w-[300px] xl:h-[506px] xl:w-[506px]"
+      fill="transparent"
+      viewBox="0 0 506 506"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <g class="avatar-ring-rotate">
+        <circle
+          class="avatar-ring-dash"
+          cx="253"
+          cy="253"
+          r="250"
+          stroke="currentColor"
+          stroke-width="4"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        />
+      </g>
+    </svg>
+  </div>
+</div>

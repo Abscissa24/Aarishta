@@ -1,0 +1,87 @@
+---
+import ThemeToggle from "./ThemeToggle.astro";
+import ListenToggle from "./ListenToggle.astro";
+import ReducedMotionToggle from "./ReducedMotionToggle.astro";
+import { Icon } from "astro-icon/components";
+import { LINKS } from "@/consts";
+---
+
+<!--
+  No transition:name here (unlike Header's site-header) - Chromium
+  breaks backdrop-filter on a DESCENDANT of any element that has a
+  view-transition-name assigned (which is what transition:name does),
+  even outside of an active transition. That's exactly this element's
+  structure: the frosted-glass pill below is nested inside this
+  wrapper, not applied to it directly. Header is fine because it
+  applies backdrop-blur-sm to the SAME element that carries
+  transition:name, and the bug is specifically about descendants, not
+  the named element itself. transition:persist alone (kept below)
+  still preserves this element's DOM node and state across page
+  navigations - it's transition:name specifically that triggers the
+  browser's view-transition capture behavior responsible for the bug,
+  and removing it costs nothing visually since this element persists
+  (and so never has anything to cross-fade from/to in the first place).
+-->
+<div
+  id="navbar"
+  class="fixed bottom-2 left-1/2 z-50 block h-16 -translate-x-1/2 sm:hidden"
+  transition:persist
+>
+  <div class="container mx-auto">
+    <div
+      class="flex items-center gap-4 rounded-full border border-black/25 bg-white/80 px-4 py-2 shadow-lg saturate-200 backdrop-blur-sm dark:border-white/25 dark:bg-black/50"
+    >
+      <!-- Navigation links -->
+      <nav class="navbar-links flex gap-2">
+        {
+          LINKS.map((LINK) => (
+            <a
+              href={LINK.HREF}
+              data-href={LINK.HREF}
+              class="flex items-center justify-center duration-300 hover:transition-colors"
+            >
+              {LINK.TEXT}
+            </a>
+          ))
+        }
+      </nav>
+
+      <!-- Separator -->
+      <div class="h-6 w-0.5 bg-black/25 dark:bg-white/25"></div>
+
+      <!-- Action Buttons -->
+      <div class="flex gap-2">
+        <ListenToggle id="navbarListenToggle" />
+        <ThemeToggle id="navbarThemeToggle" />
+        <ReducedMotionToggle id="navbarReducedMotionToggle" />
+        <a
+          href="/Aarishta/Assets/Media/AarishtaP-Resume.pdf"
+          target="_blank"
+          class="flex size-9 rounded-full p-2 items-center justify-center text-black/80 dark:text-white/80 bg-transparent hover:bg-black/20 dark:hover:bg-white/20 stroke-current hover:stroke-black hover:dark:stroke-white border border-black/25 dark:border-white/25 hover:transition-colors duration-300"
+          aria-label="Preview and download resume"
+        >
+          <Icon name="resume" size={20} class="mr-1 text-black/80 dark:text-white/80" />
+          Resume
+        </a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  // Same reasoning as Header.astro: this now persists across
+  // client-side navigation, so active-link state has to be driven by
+  // the current URL client-side instead of a server-rendered class.
+  function updateActiveLink() {
+    const path = window.location.pathname;
+    const firstSegment = "/" + (path.match(/[^/]+/g)?.[0] ?? "");
+    document.querySelectorAll("#navbar nav a[data-href]").forEach((el) => {
+      const href = el.getAttribute("data-href");
+      const isActive = path === href || firstSegment === href;
+      el.classList.toggle("active", isActive);
+    });
+  }
+  updateActiveLink();
+
+  document.addEventListener("astro:after-swap", updateActiveLink);
+</script>

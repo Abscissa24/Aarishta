@@ -1,0 +1,28 @@
+---
+import Card from "@/components/Card.astro";
+import Heading from "@/components/Heading.astro";
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import { projects } from "@cv";
+
+const projectsDescription =
+  "Teaching practice portfolio pieces by Aarishta Pillay — lesson plans, learning resources, and classroom work from intermediate phase teaching practice.";
+---
+
+<BaseLayout title="Projects" description={projectsDescription}>
+  <div class="container mx-auto my-24 xl:my-5">
+    <Heading title="My Projects" />
+    <div class="grid w-full grid-cols-1 gap-5 sm:grid-cols-2">
+      {
+        projects.map(({ url, name, description, highlights, technologies }) => (
+          <Card
+            url={url}
+            description={description}
+            highlights={highlights}
+            name={name}
+            technologies={technologies}
+          />
+        ))
+      }
+    </div>
+  </div>
+</BaseLayout>

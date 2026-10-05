@@ -1,0 +1,47 @@
+{
+  "name": "armiel-pillay-portfolio",
+  "type": "module",
+  "version": "3.0",
+  "scripts": {
+    "dev": "astro dev",
+    "start": "astro dev",
+    "build": "astro check && astro build",
+    "preview": "astro preview",
+    "astro": "astro",
+    "format": "prettier --write . --plugin=prettier-plugin-astro"
+  },
+  "dependencies": {
+    "@astrojs/react": "^6.0.1",
+    "@tailwindcss/typography": "^0.5.20",
+    "@tailwindcss/vite": "^4.3.3",
+    "@tsparticles/engine": "^4.1.1",
+    "@tsparticles/react": "^4.1.1",
+    "@tsparticles/slim": "^4.1.1",
+    "astro": "^7.1.1",
+    "astro-icon": "^1.1.5",
+    "clsx": "^2.1.1",
+    "framer-motion": "^11.11.7",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
+    "tailwind-merge": "^2.5.3",
+    "tailwindcss": "^4.3.3"
+  },
+  "devDependencies": {
+    "@astrojs/check": "^0.9.9",
+    "@types/react": "^18.3.11",
+    "@types/react-dom": "^18.3.0",
+    "prettier": "^3.3.3",
+    "prettier-plugin-astro": "^0.14.1",
+    "prettier-plugin-tailwindcss": "^0.6.14",
+    "sharp": "^0.35.3",
+    "typescript": "^5.6.3"
+  },
+  "allowScripts": {
+    "esbuild": true,
+    "sharp": true,
+    "@tsparticles/engine": true
+  },
+  "overrides": {
+    "encoding-sniffer": "^1.0.2"
+  }
+}

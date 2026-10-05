@@ -1,0 +1,54 @@
+---
+import { skills } from "@cv";
+import Section from "./Section.astro";
+const {
+  operating_systems,
+  languages,
+  cloud,
+  networking,
+  frameworks,
+  databases,
+  tools,
+  virtualization,
+  security,
+  technical,
+  leadership,
+  soft,
+} = skills;
+
+const skillCategories = [
+  { title: "Operating Systems", items: operating_systems ?? [] },
+  { title: "Languages", items: languages ?? [] },
+  { title: "Frameworks", items: frameworks ?? [] },
+  { title: "Databases", items: databases ?? [] },
+  { title: "Cloud", items: cloud ?? [] },
+  { title: "Networking", items: networking ?? [] },
+  { title: "Virtualization", items: virtualization ?? [] },
+  { title: "Security", items: security ?? [] },
+  { title: "Tools", items: tools ?? [] },
+  { title: "Technical & Analytical", items: technical ?? [] },
+  { title: "Leadership & Management", items: leadership ?? [] },
+  { title: "Soft Skills", items: soft ?? [] },
+].filter(({ items }) => items.length > 0);
+---
+
+<Section className={Astro.props.className} title="Skills">
+  <div class="flex flex-col space-y-4">
+    {
+      skillCategories.map(({ title, items }) => (
+        <div class="flex flex-col sm:flex-row sm:items-center">
+          <span class="w-full text-sm font-bold text-black/80 dark:text-white/80 sm:w-48">
+            {title}
+          </span>
+          <ul class="flex flex-1 flex-wrap gap-2">
+            {items.map((item) => (
+              <li class="inline-flex items-center rounded-md border border-black/25 bg-neutral-200/50 px-2 py-1 text-xs text-black/80 dark:border-white/25 dark:bg-neutral-800/50 dark:text-white/80">
+                {item}
+              </li>
+            ))}
+          </ul>
+        </div>
+      ))
+    }
+  </div>
+</Section>

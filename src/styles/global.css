@@ -1,0 +1,350 @@
+@import "tailwindcss";
+/*
+ * Bridges the existing tailwind.config.mjs (container, custom screens,
+ * darkMode: "class", the "rm" reduced-motion variant, and the
+ * typography plugin) into Tailwind v4's CSS-first config, so none of
+ * that had to be rewritten as @theme/@utility/@custom-variant rules.
+ * Path is relative to this file.
+ */
+@config "../../tailwind.config.mjs";
+
+/* Tailwind v3 (used by the original Astro 4 version of this site)
+   always paired `backdrop-filter` with a `-webkit-backdrop-filter`
+   fallback. Tailwind v4 dropped that: its documented baseline browser
+   support (Safari 16.4+ / Chrome 111+ / Firefox 128+) is recent enough
+   that the unprefixed property alone is assumed to be sufficient, so
+   the utility classes below (and any other `backdrop-blur-*` used in
+   future) no longer emit the -webkit- version at all.
+   Without it, `backdrop-filter` silently does nothing in any browser
+   that still needs the prefix - no error, no fallback, the element
+   just renders as if the property were never set. That's what made
+   the mobile bottom nav bar's (and the desktop header's, once
+   scrolled - see `header.scrolled` below) frosted-glass background
+   render as plain, unblurred transparency instead of the intended
+   frosted glass look. Re-adding it here restores that cross-browser
+   parity for every current and future use of `backdrop-blur-*`,
+   reusing the same `--tw-backdrop-*` custom properties the Tailwind
+   utility already sets, rather than only patching the one class this
+   was first noticed on. */
+[class*="backdrop-blur"] {
+  -webkit-backdrop-filter: var(--tw-backdrop-blur, ) var(--tw-backdrop-brightness, )
+    var(--tw-backdrop-contrast, ) var(--tw-backdrop-grayscale, )
+    var(--tw-backdrop-hue-rotate, ) var(--tw-backdrop-invert, )
+    var(--tw-backdrop-opacity, ) var(--tw-backdrop-saturate, )
+    var(--tw-backdrop-sepia, );
+}
+
+@layer base {
+  /*
+   * These paths are absolute and must match astro.config.mjs's `base`.
+   * Plain CSS can't read import.meta.env.BASE_URL (that's only usable
+   * in .astro/.ts files), so if the base path ever changes, update it
+   * here too.
+   */
+  @font-face {
+    font-family: "Inter";
+    src: url("/Aarishta/fonts/Inter-Regular.woff2") format("woff2");
+    font-weight: 400;
+    font-style: normal;
+    font-display: swap;
+  }
+  @font-face {
+    font-family: "Inter";
+    src: url("/Aarishta/fonts/Inter-Bold.woff2") format("woff2");
+    font-weight: 700;
+    font-style: normal;
+    font-display: swap;
+  }
+  body {
+    @apply leading-loose;
+  }
+  h1 {
+    @apply bg-gradient-to-b from-neutral-900 to-neutral-600 bg-clip-text text-[48px] font-bold leading-[1.1] text-transparent dark:from-neutral-50 dark:to-neutral-400 xl:text-[80px];
+  }
+  h2 {
+    @apply bg-gradient-to-b from-neutral-900 to-neutral-600 bg-clip-text text-[36px] font-bold leading-[1.1] text-transparent dark:from-neutral-50 dark:to-neutral-400 xl:text-[48px];
+  }
+  h3 {
+    @apply bg-gradient-to-b from-neutral-900 to-neutral-600 bg-clip-text text-[20px] font-bold leading-[1.1] text-transparent dark:from-neutral-50 dark:to-neutral-400 xl:text-[24px];
+  }
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  overflow-y: scroll;
+  font-family: "Inter", sans-serif;
+}
+
+html {
+  background-color: white;
+  color-scheme: light;
+}
+
+html.dark {
+  background-color: black;
+  color-scheme: dark;
+}
+
+/* The starry background (Starry.tsx) renders its particles in a single
+   fixed color (white) and flips between light/dark by inverting the
+   canvas with a CSS filter, rather than re-coloring particles through
+   the tsParticles engine. Re-coloring via the engine means changing
+   `options`, which forces the whole particle field to be torn down and
+   regenerated from scratch - on a slower device that's a genuinely
+   visible gap where the page background has already flipped but no
+   stars are drawn yet. A CSS filter is applied to the already-rendered
+   canvas pixels each frame, so it's instant and needs no
+   reinitialization: white particles inverted are black, and inverting
+   doesn't touch the canvas's transparency, so the rest of the page
+   underneath is unaffected. */
+#tsparticles canvas {
+  filter: invert(1);
+}
+
+html.dark #tsparticles canvas {
+  filter: none;
+}
+
+html,
+body {
+  @apply h-full w-full;
+}
+
+body {
+  @apply relative flex flex-col;
+}
+
+main {
+  @apply flex flex-1 flex-col;
+}
+
+header {
+  @apply border-b;
+}
+
+header:not(.scrolled) {
+  @apply border-transparent bg-transparent;
+}
+
+header.scrolled {
+  @apply border-black/25 bg-white/80 saturate-200 backdrop-blur-sm dark:border-white/25 dark:bg-black/50;
+}
+
+/* Header/Navbar links now persist across client-side navigation
+   (transition:persist), so they're only rendered server-side once and
+   don't get fresh pathname-based classes on every route change. A
+   small script (see Header.astro / Navbar.astro) toggles `.active`
+   based on the current URL instead, so this CSS carries the styling
+   that used to be baked in at render time. */
+header nav a {
+  @apply text-black/80 hover:bg-black/20 hover:text-black dark:text-white/80 dark:hover:bg-white/20 dark:hover:text-white;
+}
+
+header nav a.active {
+  @apply bg-black text-white hover:bg-black hover:text-white dark:bg-white dark:text-black dark:hover:bg-white dark:hover:text-black;
+}
+
+nav.navbar-links a {
+  @apply text-black/80 hover:text-black dark:text-white/80 dark:hover:text-white;
+}
+
+nav.navbar-links a.active {
+  @apply border-b-2 border-black text-black dark:border-white dark:text-white;
+}
+
+.print {
+  display: none !important;
+}
+
+@media print {
+  .no-print {
+    display: none !important;
+  }
+
+  .print {
+    display: block !important;
+  }
+
+  astro-dev-toolbar {
+    display: none !important;
+  }
+}
+
+/* Avatar ring (Photo.tsx). A native CSS animation rather than a
+   Framer Motion one: `animation-play-state: paused` gives a TRUE
+   pause/resume - the browser tracks exact elapsed position within the
+   loop and continues from there, which is what makes the reduced
+   motion toggle below freeze/resume correctly (a JS-driven keyframe
+   array animation can't do this: stopping and reapplying the same
+   target always restarts the sequence toward its first frame instead
+   of continuing from wherever it was paused).
+
+   Split into TWO animations on TWO elements (an outer <g> that only
+   rotates, an inner <circle> that only animates stroke-dasharray)
+   rather than one animation on one element that touches both
+   properties. `transform` is compositor-only - the browser can tween
+   it every frame on the GPU without ever repainting. `stroke-dasharray`
+   is not compositable at all - any change to it forces a repaint of
+   that element's raster on the main thread. Keeping both on the same
+   element meant every rotation frame paid the same paint cost as the
+   dash change, so the smooth GPU-driven part of the animation was
+   effectively throttled down to main-thread paint speed. Splitting
+   them lets the rotation stay a pure compositor transform (cheap,
+   never drops frames under load) while the paint cost of the dash
+   change is confined to the small circle raster alone.
+
+   Matches the original Framer Motion version's speed and range exactly
+   (rotate 120deg -> 360deg, duration 20s per leg, repeatType: reverse
+   -> 40s full cycle here), just authored as ONE explicit 40s cycle
+   (`animation-direction: normal`, not `alternate`) rather than relying
+   on the browser auto-reversing a 20s keyframe set - that indirection
+   was the source of the original's abrupt-feeling turnaround (Framer's
+   default keyframe easing doesn't actually come to a clean stop at the
+   ends before reversing). Authoring both legs directly removes that
+   ambiguity and guarantees leg 2 is a byte-for-byte mirror of leg 1.
+
+   Each 20s leg has three phases:
+     1. Accelerate - 5s, ramps 0 -> 16deg/s (the OG's cruising speed)
+     2. Constant   - 10s flat at 16deg/s
+     3. Decelerate - 5s, ramps 16deg/s -> 0, a complete stop
+   Then the next leg accelerates back up to that same 16deg/s the other
+   way, and the loop repeats. Timing-function stays `linear` throughout
+   - no cubic-bezier/ease curves, since those have *varying*
+   acceleration (that's what reads as a lurch). The accelerate/hold/
+   decelerate trapezoid instead comes from the keyframe VALUES: each
+   5s phase has 5 sub-steps whose degree deltas grow (or shrink) as
+   1:3:5:7:9 - the textbook distances-per-equal-time-slice ratio for
+   *constant* acceleration - so speed climbs/falls in even steps, not
+   a curve, and comes to an exact, complete stop at each end. */
+@keyframes avatar-ring-rotate {
+  0% {
+    transform: rotate(120deg);
+  }
+  2.5% {
+    transform: rotate(121.6deg);
+  }
+  5% {
+    transform: rotate(126.4deg);
+  }
+  7.5% {
+    transform: rotate(134.4deg);
+  }
+  10% {
+    transform: rotate(145.6deg);
+  }
+  12.5% {
+    transform: rotate(160deg);
+  }
+  37.5% {
+    transform: rotate(320deg);
+  }
+  40% {
+    transform: rotate(334.4deg);
+  }
+  42.5% {
+    transform: rotate(345.6deg);
+  }
+  45% {
+    transform: rotate(353.6deg);
+  }
+  47.5% {
+    transform: rotate(358.4deg);
+  }
+  50% {
+    transform: rotate(360deg);
+  }
+  52.5% {
+    transform: rotate(358.4deg);
+  }
+  55% {
+    transform: rotate(353.6deg);
+  }
+  57.5% {
+    transform: rotate(345.6deg);
+  }
+  60% {
+    transform: rotate(334.4deg);
+  }
+  62.5% {
+    transform: rotate(320deg);
+  }
+  87.5% {
+    transform: rotate(160deg);
+  }
+  90% {
+    transform: rotate(145.6deg);
+  }
+  92.5% {
+    transform: rotate(134.4deg);
+  }
+  95% {
+    transform: rotate(126.4deg);
+  }
+  97.5% {
+    transform: rotate(121.6deg);
+  }
+  100% {
+    transform: rotate(120deg);
+  }
+}
+
+@keyframes avatar-ring-dash {
+  0% {
+    stroke-dasharray: 15 120 25 25;
+  }
+  25% {
+    stroke-dasharray: 16 25 92 72;
+  }
+  50% {
+    stroke-dasharray: 4 250 22 22;
+  }
+  75% {
+    stroke-dasharray: 16 25 92 72;
+  }
+  100% {
+    stroke-dasharray: 15 120 25 25;
+  }
+}
+
+.avatar-ring-rotate {
+  transform-origin: 50% 50%;
+  animation: avatar-ring-rotate 40s linear infinite normal;
+  will-change: transform;
+}
+
+.avatar-ring-dash {
+  stroke-dasharray: 24 10 0 0;
+  animation: avatar-ring-dash 40s linear infinite normal;
+}
+
+html.reduce-motion .avatar-ring-rotate,
+html.reduce-motion .avatar-ring-dash {
+  animation-play-state: paused;
+}
+
+/* Listen mode: readable blocks become clickable targets while
+   html.listening is set. The active utterance gets a high-contrast
+   outline that works in both light and dark themes. */
+html.listening main h1,
+html.listening main h2,
+html.listening main h3,
+html.listening main p,
+html.listening main li {
+  cursor: pointer;
+}
+
+html.listening main [data-listen-active="true"] {
+  outline: 2px solid currentColor;
+  outline-offset: 4px;
+  border-radius: 4px;
+  background-color: rgb(0 0 0 / 0.06);
+}
+
+html.dark.listening main [data-listen-active="true"] {
+  background-color: rgb(255 255 255 / 0.08);
+}

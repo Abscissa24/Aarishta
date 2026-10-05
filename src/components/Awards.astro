@@ -1,0 +1,39 @@
+---
+import Section from "./Section.astro";
+import { awards } from "@cv";
+---
+
+<Section className={Astro.props.className} title="Awards">
+  <ul class="space-y-4">
+    {
+      awards.map(({ title, date, awarder }) => (
+        <li class="flex flex-col md:flex-row md:items-baseline">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="24"
+            height="24"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            class="mr-2 hidden h-5 w-5 md:inline-block"
+          >
+            <circle cx="12" cy="8" r="6" />
+            <path d="M15.477 12.89 17 22l-5-3-5 3 1.523-9.11" />
+          </svg>
+          <div class="relative w-full">
+            <time class="mb-1 text-xs font-bold text-black/50 dark:text-white/50 md:absolute md:right-0 md:top-0">
+              {date}
+            </time>
+            <div class="text-base font-medium leading-snug text-black dark:text-white">
+              {title}
+            </div>
+            <p class="mt-1 text-sm text-black/80 dark:text-white/80">{awarder}</p>
+          </div>
+        </li>
+      ))
+    }
+  </ul>
+</Section>

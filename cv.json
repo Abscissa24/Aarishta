@@ -1,0 +1,246 @@
+{
+  "basics": {
+    "name": "Aarishta Pillay",
+    "nickname": "",
+    "label": "Bachelor of Education Graduate",
+    "summary": "Bachelor of Education graduate from STADIO Faculty of Education, with extensive coursework and certifications in education. Proven ability to engage with diverse audiences effectively. Eager to contribute to educational projects and gain practical experience. Committed to enhancing educational initiatives through active participation.",
+    "location": {
+      "city": "Waunakee",
+      "countryCode": "US",
+      "region": "WI"
+    },
+    "socials": [
+      {
+        "network": "email",
+        "url": "mailto:aarishtapillay@gmail.com"
+      },
+      {
+        "network": "linkedin",
+        "url": "https://www.linkedin.com/in/aarishtapillay"
+      },
+      {
+        "network": "website",
+        "url": "https://us.bold.pro/my/aarishta-pillay"
+      }
+    ]
+  },
+  "work": [
+    {
+      "name": "Cultural Care Au Pair, USA",
+      "position": "Au Pair & Ambassador",
+      "location_type": "On-site",
+      "location": "Waunakee, WI, USA",
+      "url": null,
+      "startDate": "2025-01-01",
+      "endDate": null,
+      "responsibilities": [
+        "Mentored other au pairs needing support or guidance before traveling.",
+        "Oversaw daily activities and developmental needs of two host children."
+      ]
+    },
+    {
+      "name": "Preply",
+      "position": "Online TEFL/ESL Educator",
+      "location_type": "Remote",
+      "location": "Durban, South Africa",
+      "url": null,
+      "startDate": "2024-06-01",
+      "endDate": "2025-01-31",
+      "responsibilities": [
+        "Researched innovative pedagogical methods for teaching English as a second language.",
+        "Incorporated intersectionality to compare historic texts with contemporary cultural contexts.",
+        "Integrated technology into lessons to engage students and diversify instructional methods."
+      ]
+    },
+    {
+      "name": "The Bright Eyes Trust",
+      "position": "ECD Practitioner Volunteer",
+      "location_type": "On-site",
+      "location": "Durban, Musgrave, South Africa",
+      "url": null,
+      "startDate": "2024-02-01",
+      "endDate": "2025-11-30",
+      "responsibilities": [
+        "Delivered critical early intervention services to visually impaired young children.",
+        "Implemented specialized interventions promoting healthy physical, cognitive, and emotional development.",
+        "Fostered exploration and curiosity in visually impaired children to enhance confidence."
+      ]
+    },
+    {
+      "name": "Port Shepstone Senior Primary",
+      "position": "Examination Assistant",
+      "location_type": "On-site",
+      "location": "Port Shepstone, South Africa",
+      "url": null,
+      "startDate": "2022-06-01",
+      "endDate": "2022-07-31",
+      "responsibilities": [
+        "Maintained meticulous records of scripts received, marks recorded, and arrangements per district and subject.",
+        "Controlled distribution and scanning processes for scripts to enhance operational efficiency.",
+        "Executed script dispatching and created comprehensive marking center files."
+      ]
+    },
+    {
+      "name": "Port Shepstone Primary School",
+      "position": "Education Assistant",
+      "location_type": "On-site",
+      "location": "Port Shepstone, South Africa",
+      "url": null,
+      "startDate": "2021-11-01",
+      "endDate": "2022-03-31",
+      "responsibilities": [
+        "Facilitated educational and social development for learners in a safe and clean classroom.",
+        "Supervised group activities to promote engagement and drafted lesson plans.",
+        "Served as relief staff, corrected assignments and ensured continuity in educational delivery."
+      ]
+    },
+    {
+      "name": "Marburg Primary School",
+      "position": "Education Assistant",
+      "location_type": "On-site",
+      "location": "Marburg, South Africa",
+      "url": null,
+      "startDate": "2020-12-01",
+      "endDate": "2021-03-31",
+      "responsibilities": []
+    }
+  ],
+  "education": [
+    {
+      "institution": "STADIO",
+      "url": null,
+      "area": "Bachelor of Education: Intermediate Phase Teaching (International)",
+      "studyType": "Bachelor's Degree",
+      "startDate": null,
+      "endDate": "2025-05-31",
+      "summary": "South African Studies Abroad on Intermediate Phase Teaching (Grades 4-7). Majored in Science, Mathematics and Special Needs Education. Research: Qualitative, quantitative and mixed methods data."
+    },
+    {
+      "institution": "STADIO",
+      "url": null,
+      "area": "Higher Certificate in Early Childhood Development: Early Childhood Education and Care",
+      "studyType": "Higher Certificate",
+      "startDate": null,
+      "endDate": "2024-12-31",
+      "summary": null
+    },
+    {
+      "institution": "UPSKILLIST",
+      "url": null,
+      "area": "Diploma In Childcare Training: Early Childhood Care and Education (International)",
+      "studyType": "Diploma",
+      "startDate": "2024-06-04",
+      "endDate": "2024-06-04",
+      "summary": "Grade: Distinction"
+    },
+    {
+      "institution": "Port Shepstone Secondary School",
+      "url": null,
+      "area": "Matric",
+      "studyType": "National Senior Certificate",
+      "startDate": null,
+      "endDate": "2019-12-31",
+      "summary": "Awarded English DeBeers, 2019. Certificate of Distinction: Life Orientation."
+    }
+  ],
+  "certificates": [
+    {
+      "name": "TRA Certificate Evaluation (80-lesson)",
+      "issuer": "Teacher Record",
+      "date": "2023-08-10",
+      "number": "TRA801692144872"
+    },
+    {
+      "name": "Teaching English as a Foreign Language Course (120 Hours)",
+      "issuer": "TEFL Professional Institute - Teacher Record",
+      "date": "2022-07-01",
+      "number": "TR3123284950",
+      "grade": "Distinction"
+    },
+    {
+      "name": "Provisional Registration (Student Teacher)",
+      "issuer": "South African Council for Educators (SACE)",
+      "date": "2024-08-07",
+      "number": "P12997817",
+      "expires": "2025-08-07"
+    },
+    {
+      "name": "Heartsaver Pediatric First Aid CPR AED (Online Portion)",
+      "issuer": "American Heart Association",
+      "date": "2024-11-16",
+      "number": "IMP24Z31WX13"
+    },
+    {
+      "name": "Foundation Phase Initiative: Grade R - Implementing manipulatives through play-based learning",
+      "issuer": "Department of Basic Education / UNICEF / Care for Education / SACE / The LEGO Foundation",
+      "date": "2025-01-02",
+      "points": "15 PD points"
+    },
+    {
+      "name": "Foundation Phase Initiative: Grade 1 - Implementing manipulatives through play-based learning",
+      "issuer": "Department of Basic Education / UNICEF / Care for Education / SACE / The LEGO Foundation",
+      "date": "2025-01-03",
+      "points": "15 PD points"
+    },
+    {
+      "name": "Foundation Phase Initiative: Grade 2 - Implementing manipulatives through play-based learning",
+      "issuer": "Department of Basic Education / UNICEF / Care for Education / SACE / The LEGO Foundation",
+      "date": "2025-01-03",
+      "points": "15 PD points"
+    },
+    {
+      "name": "Foundation Phase Initiative: Grade 3 - Implementing manipulatives through play-based learning",
+      "issuer": "Department of Basic Education / UNICEF / Care for Education / SACE / The LEGO Foundation",
+      "date": "2024-12-27",
+      "points": "15 PD points"
+    }
+  ],
+  "awards": [
+    {
+      "title": "English DeBeers",
+      "date": "2019",
+      "awarder": "Port Shepstone Secondary School"
+    },
+    {
+      "title": "Certificate of Distinction: Life Orientation",
+      "date": "2019",
+      "awarder": "Port Shepstone Secondary School"
+    }
+  ],
+  "skills": {
+    "languages": [
+      "English (Native/Bilingual)",
+      "South African Sign Language (Full Professional)",
+      "Afrikaans (Professional)",
+      "IsiZulu (Limited)"
+    ],
+    "tools": [
+      "Microsoft Suite"
+    ],
+    "technical": [
+      "Lesson design",
+      "Analytical reporting and presentation"
+    ],
+    "leadership": [
+      "Teamwork and collaboration"
+    ],
+    "soft": [
+      "Rapid learning",
+      "Detail-oriented approach",
+      "Reliable and dependable",
+      "Flexible mindset"
+    ]
+  },
+  "projects": [
+    {
+      "name": "TPIP 200 e-PoE (Teaching Practice Portfolio of Evidence)",
+      "description": "Comprehensive teaching practicum portfolio for Grade 4 intermediate phase at Junagarth Road Primary School, featuring 6 formal lesson plans across Mathematics, English Home Language, Natural Sciences & Technology, and Life Skills. Included original learning resources, interactive classroom activities, and non-teaching administrative duties.",
+      "highlights": [
+        "Achieved a 90% mark on the STADIO-assessed formal Mathematics lesson on Symmetry, featuring interactive paint-folding and monster mirror-image activities.",
+        "Scored 85% on a Natural Sciences & Technology practical lesson on heat energy transfer using multi-temperature water experiments.",
+        "Delivered structured English Home Language and Life Skills lessons focused on instructional procedures, weather reports, and social responsibility.",
+        "Completed and verified extensive non-teaching duties including break supervision, lunch distribution for indigent learners, computer literacy assistance, and remedial classes."
+      ]
+    }
+  ]
+}

@@ -1,0 +1,96 @@
+---
+import { Icon } from "astro-icon/components";
+import { cn } from "@/lib/utils";
+
+type Props = {
+  id: string;
+};
+
+const { id } = Astro.props;
+---
+
+<button
+  id={id}
+  aria-label="Enter listen mode"
+  aria-pressed="false"
+  title="Listen to this page"
+  class={cn(
+    "flex",
+    "size-9 rounded-full p-2 items-center justify-center",
+    "text-black/80 dark:text-white/80",
+    "bg-transparent hover:bg-black/20 dark:hover:bg-white/20",
+    "stroke-current hover:stroke-black hover:dark:stroke-white",
+    "border border-black/25 dark:border-white/25",
+    "hover:transition-colors duration-300",
+    "listening:bg-black listening:text-white listening:dark:bg-white listening:dark:text-black",
+    "listening:border-black listening:dark:border-white",
+  )}
+>
+  <Icon name="listen" class="block size-full listening:hidden" />
+  <Icon name="listen-off" class="hidden size-full listening:block" />
+</button>
+
+<script is:inline define:vars={{ id }}>
+  const setListenToggleListener = () => {
+    const toggleBtn = document.getElementById(id);
+    // Same persist guard as ThemeToggle: header/navbar persist across
+    // client-side navigation, so without this every astro:after-swap
+    // would stack another click listener on the same element.
+    if (!toggleBtn || toggleBtn.dataset.bound === "true") return;
+    toggleBtn.dataset.bound = "true";
+
+    const syncState = () => {
+      const listening = document.documentElement.classList.contains("listening");
+      toggleBtn.setAttribute("aria-pressed", listening ? "true" : "false");
+      toggleBtn.setAttribute(
+        "aria-label",
+        listening ? "Exit listen mode" : "Enter listen mode",
+      );
+      toggleBtn.setAttribute(
+        "title",
+        listening ? "Exit listen mode" : "Listen to this page",
+      );
+    };
+
+    const supported =
+      typeof window !== "undefined" &&
+      "speechSynthesis" in window &&
+      typeof SpeechSynthesisUtterance !== "undefined";
+
+    if (!supported) {
+      toggleBtn.setAttribute("disabled", "true");
+      toggleBtn.setAttribute("aria-disabled", "true");
+      toggleBtn.setAttribute("title", "Listen mode not supported in this browser");
+      toggleBtn.classList.add("opacity-40");
+      return;
+    }
+
+    toggleBtn.addEventListener("click", () => {
+      const element = document.documentElement;
+      const listening = !element.classList.contains("listening");
+      element.classList.toggle("listening", listening);
+      // Persisted so client-side navigation (which swaps in a fresh
+      // <html> without the class) can't silently exit the mode - only
+      // an explicit toggle off/on changes it.
+      try {
+        localStorage.setItem("listenMode", listening ? "true" : "false");
+      } catch (e) {
+        /* storage is best-effort */
+      }
+      window.dispatchEvent(
+        new CustomEvent("listen-mode-changed", { detail: { listening } }),
+      );
+      syncState();
+    });
+
+    window.addEventListener("listen-mode-changed", syncState);
+
+    syncState();
+
+    document.addEventListener("astro:after-swap", syncState);
+  };
+
+  setListenToggleListener();
+
+  document.addEventListener("astro:after-swap", setListenToggleListener);
+</script>

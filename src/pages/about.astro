@@ -1,0 +1,28 @@
+---
+import Heading from "@/components/Heading.astro";
+import Education from "@/components/Education.astro";
+import Experience from "@/components/Experience.astro";
+import Skills from "@/components/Skills.astro";
+import Certificates from "@/components/Certificates.astro";
+import Awards from "@/components/Awards.astro";
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import { basics } from "@cv";
+
+const aboutDescription = `Education, experience, certifications, skills, and awards of ${basics.name} — Bachelor of Education graduate, TEFL/ESL educator, and au pair in Waunakee, Wisconsin.`;
+---
+
+<BaseLayout
+  title="About"
+  description={aboutDescription}
+>
+  <div class="container mx-auto my-24 xl:my-5">
+    <Heading title="About Me" />
+    <div class="space-y-8 md:col-span-4">
+      <Experience class="order-last" />
+      <Education class="order-first" />
+      <Certificates />
+      <Awards />
+      <Skills />
+    </div>
+  </div>
+</BaseLayout>

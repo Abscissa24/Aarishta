@@ -1,0 +1,645 @@
+---
+---
+
+<div
+  id="listen-player"
+  hidden
+  transition:persist
+  class="fixed bottom-20 left-1/2 z-50 w-max max-w-[calc(100vw-2rem)] -translate-x-1/2 print:hidden sm:bottom-6"
+>
+  <div
+    role="region"
+    aria-label="Listen mode player"
+    class="flex flex-col gap-2 rounded-2xl border border-black/25 bg-white/90 px-3 py-2 shadow-lg saturate-200 backdrop-blur-sm dark:border-white/25 dark:bg-black/60"
+  >
+    <div class="flex items-center gap-2">
+      <button
+        id="listen-prev"
+        type="button"
+        aria-label="Previous section"
+        title="Previous section"
+        class="flex size-8 items-center justify-center rounded-full border border-black/25 text-black/80 transition-colors duration-300 hover:bg-black/20 dark:border-white/25 dark:text-white/80 dark:hover:bg-white/20"
+      >
+        <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M19 20 9 12l10-8v16z"/><path d="M5 19V5"/></svg>
+      </button>
+      <button
+        id="listen-toggle-play"
+        type="button"
+        aria-label="Pause"
+        title="Play / pause"
+        class="flex size-8 items-center justify-center rounded-full bg-black text-white transition-colors duration-300 hover:bg-black/80 dark:bg-white dark:text-black dark:hover:bg-white/80"
+      >
+        <svg id="listen-icon-pause" xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 5v14"/><path d="M15 5v14"/></svg>
+        <svg id="listen-icon-play" xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24" fill="currentColor" class="hidden"><path d="M8 5v14l11-7z"/></svg>
+      </button>
+      <button
+        id="listen-next"
+        type="button"
+        aria-label="Next section"
+        title="Next section"
+        class="flex size-8 items-center justify-center rounded-full border border-black/25 text-black/80 transition-colors duration-300 hover:bg-black/20 dark:border-white/25 dark:text-white/80 dark:hover:bg-white/20"
+      >
+        <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="m5 4 10 8-10 8V4z"/><path d="M19 5v14"/></svg>
+      </button>
+      <button
+        id="listen-stop"
+        type="button"
+        aria-label="Stop"
+        title="Stop"
+        class="flex size-8 items-center justify-center rounded-full border border-black/25 text-black/80 transition-colors duration-300 hover:bg-black/20 dark:border-white/25 dark:text-white/80 dark:hover:bg-white/20"
+      >
+        <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24" fill="currentColor"><rect x="7" y="7" width="10" height="10" rx="1"/></svg>
+      </button>
+      <div class="flex min-w-0 flex-col leading-tight">
+        <span id="listen-progress" class="text-xs font-bold text-black dark:text-white">0 / 0</span>
+        <span id="listen-current" aria-live="polite" class="max-w-[40vw] truncate text-xs text-black/60 dark:text-white/60 sm:max-w-[28rem]">Ready to listen</span>
+      </div>
+      <button
+        id="listen-exit"
+        type="button"
+        aria-label="Exit listen mode"
+        title="Exit listen mode"
+        class="flex size-8 items-center justify-center rounded-full border border-black/25 text-black/80 transition-colors duration-300 hover:bg-black/20 dark:border-white/25 dark:text-white/80 dark:hover:bg-white/20"
+      >
+        <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M6 6l12 12M18 6 6 18"/></svg>
+      </button>
+    </div>
+    <div class="flex flex-wrap items-center gap-2">
+      <label for="listen-voice" class="sr-only">Voice</label>
+      <select
+        id="listen-voice"
+        aria-label="Voice"
+        title="Voice"
+        class="max-w-[12rem] rounded-full border border-black/25 bg-transparent px-2 py-1 text-xs text-black/80 dark:border-white/25 dark:text-white/80"
+      >
+        <option value="">Default voice</option>
+      </select>
+      <label for="listen-rate" class="sr-only">Speed</label>
+      <select
+        id="listen-rate"
+        aria-label="Reading speed"
+        title="Reading speed"
+        class="rounded-full border border-black/25 bg-transparent px-2 py-1 text-xs text-black/80 dark:border-white/25 dark:text-white/80"
+      >
+        <option value="0.75">0.75x</option>
+        <option value="1" selected>1x</option>
+        <option value="1.25">1.25x</option>
+        <option value="1.5">1.5x</option>
+      </select>
+      <span class="text-[11px] text-black/50 dark:text-white/50">Tip: click any paragraph in listen mode to hear it</span>
+    </div>
+  </div>
+</div>
+
+<script is:inline>
+  (() => {
+    // The player persists across client-side navigation
+    // (transition:persist), so this script re-runs on every
+    // astro:after-swap without the DOM being recreated - guard
+    // against stacking duplicate listeners.
+    if (window.__listenPlayerInit) return;
+    window.__listenPlayerInit = true;
+
+    const supported =
+      typeof window !== "undefined" &&
+      "speechSynthesis" in window &&
+      typeof SpeechSynthesisUtterance !== "undefined";
+
+    const player = document.getElementById("listen-player");
+    if (!player || !supported) return;
+
+    const synth = window.speechSynthesis;
+    const progressEl = document.getElementById("listen-progress");
+    const currentEl = document.getElementById("listen-current");
+    const playBtn = document.getElementById("listen-toggle-play");
+    const playIcon = document.getElementById("listen-icon-play");
+    const pauseIcon = document.getElementById("listen-icon-pause");
+    const prevBtn = document.getElementById("listen-prev");
+    const nextBtn = document.getElementById("listen-next");
+    const stopBtn = document.getElementById("listen-stop");
+    const exitBtn = document.getElementById("listen-exit");
+    const voiceSelect = document.getElementById("listen-voice");
+    const rateSelect = document.getElementById("listen-rate");
+
+    const READABLE_SELECTOR = "main h1, main h2, main h3, main p, main li";
+    const CLICKABLE_SELECTOR = "a, button, select, input, textarea";
+
+    let items = [];
+    let currentIndex = 0;
+    let isPlaying = false;
+    let speakToken = 0;
+    let voices = [];
+    let voicesSettled = false;
+    let noVoices = false;
+    let notice = "";
+
+    const isListening = () =>
+      document.documentElement.classList.contains("listening");
+
+    // The incoming document on client-side navigation carries no
+    // "listening" class on <html>; BaseHead restores it from storage on
+    // astro:after-swap, but re-assert here too so this player never
+    // reads a stale class if handler ordering ever changes.
+    function restoreModeClass() {
+      try {
+        const persisted = localStorage.getItem("listenMode") === "true";
+        document.documentElement.classList.toggle("listening", persisted);
+      } catch (e) {
+        /* storage is best-effort */
+      }
+    }
+
+    const cleanText = (el) =>
+      (el.innerText || el.textContent || "").replace(/\s+/g, " ").trim();
+
+    const snippet = (text, len) => {
+      if (!text) return "Ready to listen";
+      return text.length > len ? text.slice(0, len - 1).trimEnd() + "…" : text;
+    };
+
+    function collectItems() {
+      const found = Array.from(
+        document.querySelectorAll(READABLE_SELECTOR),
+      ).filter((el) => {
+        if (el.closest("#listen-player")) return false;
+        if (el.getAttribute("aria-hidden") === "true") return false;
+        const text = cleanText(el);
+        // Skip list items that only wrap a nested readable block to
+        // avoid reading the same sentence twice (parent li + child p).
+        if (
+          el.tagName === "LI" &&
+          el.querySelector("h1, h2, h3, p, li")
+        ) {
+          return false;
+        }
+        return text.length > 1;
+      });
+      found.forEach((el, i) => el.setAttribute("data-listen-index", String(i)));
+      items = found;
+      if (currentIndex >= items.length) currentIndex = Math.max(0, items.length - 1);
+      return items;
+    }
+
+    function clearHighlight() {
+      document
+        .querySelectorAll("[data-listen-active='true']")
+        .forEach((el) => el.removeAttribute("data-listen-active"));
+    }
+
+    function highlight(index) {
+      clearHighlight();
+      const el = items[index];
+      if (!el) return;
+      el.setAttribute("data-listen-active", "true");
+      try {
+        const reduceMotion = document.documentElement.classList.contains(
+          "reduce-motion",
+        );
+        el.scrollIntoView({
+          behavior: reduceMotion ? "auto" : "smooth",
+          block: "center",
+        });
+      } catch (e) {
+        /* scrollIntoView is best-effort */
+      }
+    }
+
+    function updateUI() {
+      const total = items.length;
+      const displayIndex = total === 0 ? 0 : Math.min(currentIndex + 1, total);
+      if (progressEl) progressEl.textContent = displayIndex + " / " + total;
+      if (currentEl) {
+        const text = items[currentIndex] ? cleanText(items[currentIndex]) : "";
+        let status = isPlaying || total > 0 ? snippet(text, 90) : "Ready to listen";
+        let title = text || status;
+        if (!isPlaying && notice) {
+          status = notice;
+          title = text || notice;
+        } else if (!isPlaying && noVoices) {
+          status = "No speech voices found on this device";
+          title =
+            "This browser reports no text-to-speech voices, so there is nothing to speak with. " +
+            "Chromium browsers on Linux ship with none - try Firefox with speech-dispatcher and " +
+            "espeak-ng installed. Windows, macOS, and phones have built-in voices.";
+        }
+        currentEl.textContent = status;
+        currentEl.setAttribute("title", title);
+      }
+      if (playIcon && pauseIcon && playBtn) {
+        const showPlay = !isPlaying || synth.paused;
+        playIcon.classList.toggle("hidden", !showPlay);
+        pauseIcon.classList.toggle("hidden", showPlay);
+        playBtn.setAttribute("aria-label", showPlay ? "Play" : "Pause");
+      }
+      if (prevBtn) prevBtn.disabled = total === 0 || currentIndex <= 0;
+      if (nextBtn) nextBtn.disabled = total === 0 || currentIndex >= total - 1;
+      [prevBtn, nextBtn].forEach((btn) => {
+        if (btn) btn.classList.toggle("opacity-40", btn.disabled);
+      });
+    }
+
+    function getVoice() {
+      const uri = voiceSelect ? voiceSelect.value : "";
+      if (!uri) return null;
+      return voices.find((v) => v.voiceURI === uri) || null;
+    }
+
+    function getRate() {
+      const rate = parseFloat(rateSelect ? rateSelect.value : "1");
+      return Number.isFinite(rate) ? Math.min(2, Math.max(0.5, rate)) : 1;
+    }
+
+    function speakAt(index) {
+      if (!isListening()) return;
+      if (items.length === 0) collectItems();
+      if (items.length === 0) {
+        isPlaying = false;
+        if (currentEl) currentEl.textContent = "Nothing readable on this page";
+        updateUI();
+        return;
+      }
+      currentIndex = Math.min(Math.max(0, index), items.length - 1);
+      const token = ++speakToken;
+      notice = "";
+      try {
+        synth.cancel();
+      } catch (e) {
+        /* cancel is best-effort */
+      }
+      const el = items[currentIndex];
+      const text = cleanText(el);
+      if (!text) {
+        speakAt(currentIndex + 1);
+        return;
+      }
+      highlight(currentIndex);
+      isPlaying = true;
+      updateUI();
+
+      // Chrome/Edge silently drop speak() when it runs in the same task
+      // as cancel() (and right after a view-transition swap), which is
+      // exactly what entering the mode, skipping sections, and arriving
+      // on a new page all do - so queue the utterance on a later task.
+      // The token guard keeps rapid prev/next/click jumps, pauses, and
+      // exits from speaking stale text.
+      setTimeout(() => {
+        if (token !== speakToken || !isListening() || !isPlaying) return;
+        const utterance = new SpeechSynthesisUtterance(text);
+        const voice = getVoice();
+        if (voice) utterance.voice = voice;
+        utterance.rate = getRate();
+        // Helps engines without an explicit voice pick the right
+        // default (and is required by some backends to speak at all).
+        try {
+          utterance.lang =
+            (voice && voice.lang) ||
+            document.documentElement.lang ||
+            "en-US";
+        } catch (e) {
+          /* lang is best-effort */
+        }
+
+        utterance.onend = () => {
+          if (token !== speakToken || !isListening() || !isPlaying) return;
+          if (currentIndex + 1 < items.length) {
+            speakAt(currentIndex + 1);
+          } else {
+            isPlaying = false;
+            updateUI();
+          }
+        };
+        utterance.onerror = (event) => {
+          if (token !== speakToken) return;
+          // "canceled" / "interrupted" just mean we moved on - not an error.
+          if (event && (event.error === "canceled" || event.error === "interrupted")) return;
+          if (!isListening() || !isPlaying) return;
+          // Browsers refuse speech without a user gesture (e.g. an
+          // autoplay attempt right after client-side navigation): stop
+          // and say so instead of skipping through every section
+          // silently and landing on a dead "finished" state.
+          if (
+            event &&
+            (event.error === "not-allowed" ||
+              event.error === "unauthorized" ||
+              event.error === "not-supported")
+          ) {
+            isPlaying = false;
+            // With voices present this is a gesture block (press Play);
+            // with none present, fall through to the no-voices hint.
+            notice =
+              voices.length > 0
+                ? "Playback was blocked – press Play to start listening."
+                : "";
+            updateUI();
+            return;
+          }
+          if (currentIndex + 1 < items.length) {
+            speakAt(currentIndex + 1);
+          } else {
+            isPlaying = false;
+            updateUI();
+          }
+        };
+        try {
+          // Clears a stuck paused state (e.g. pause() hitting an idle
+          // engine, or cancel() mid-swap leaving paused set) - a no-op
+          // when nothing is paused.
+          try {
+            synth.resume();
+          } catch (e) {
+            /* resume is best-effort */
+          }
+          synth.speak(utterance);
+        } catch (e) {
+          isPlaying = false;
+          updateUI();
+        }
+      }, 80);
+    }
+
+    function play() {
+      if (!isListening()) return;
+      if (items.length === 0) collectItems();
+      if (items.length === 0) {
+        updateUI();
+        return;
+      }
+      if (currentIndex >= items.length) currentIndex = 0;
+      notice = "";
+      // Resume a genuinely paused utterance; if the queue is actually
+      // empty (e.g. pause hit an idle engine) fall through and
+      // (re)start the current section instead of sitting in a silent
+      // "playing" state.
+      if (synth.paused) {
+        try {
+          synth.resume();
+        } catch (e) {
+          /* resume is best-effort */
+        }
+      }
+      if (synth.speaking && !synth.paused) {
+        isPlaying = true;
+        updateUI();
+        return;
+      }
+      speakAt(currentIndex);
+    }
+
+    function pause() {
+      // Bump the token as well as flagging: a speak() deferred via
+      // setTimeout must not start after the user has paused.
+      speakToken++;
+      isPlaying = false;
+      try {
+        synth.pause();
+      } catch (e) {
+        try {
+          synth.cancel();
+        } catch (err) {
+          /* noop */
+        }
+      }
+      updateUI();
+    }
+
+    function togglePlay() {
+      if (isPlaying && !synth.paused) {
+        pause();
+      } else {
+        play();
+      }
+    }
+
+    function stop() {
+      speakToken++;
+      isPlaying = false;
+      currentIndex = 0;
+      try {
+        synth.cancel();
+      } catch (e) {
+        /* noop */
+      }
+      clearHighlight();
+      updateUI();
+    }
+
+    function showPlayer() {
+      player.removeAttribute("hidden");
+    }
+
+    function hidePlayer() {
+      player.setAttribute("hidden", "true");
+    }
+
+    function enterMode() {
+      showPlayer();
+      populateVoices();
+
+      collectItems();
+      currentIndex = 0;
+      speakAt(0);
+    }
+
+    function exitModeUI() {
+      speakToken++;
+      isPlaying = false;
+      try {
+        synth.cancel();
+      } catch (e) {
+        /* noop */
+      }
+      clearHighlight();
+      currentIndex = 0;
+      hidePlayer();
+    }
+
+    function exitMode() {
+      try {
+        localStorage.setItem("listenMode", "false");
+      } catch (e) {
+        /* storage is best-effort */
+      }
+      document.documentElement.classList.remove("listening");
+      window.dispatchEvent(
+        new CustomEvent("listen-mode-changed", { detail: { listening: false } }),
+      );
+    }
+
+    function populateVoices() {
+      try {
+        voices = synth.getVoices() || [];
+      } catch (e) {
+        voices = [];
+      }
+      // getVoices() returns [] on first call even when voices exist -
+      // only trust an empty list once voiceschanged has fired.
+      if (voicesSettled) {
+        noVoices = voices.length === 0;
+      }
+      if (!voiceSelect) return;
+      const previous = (() => {
+        try {
+          return (
+            voiceSelect.value || localStorage.getItem("listenVoiceURI") || ""
+          );
+        } catch (e) {
+          return voiceSelect.value || "";
+        }
+      })();
+      // Keep the "Default voice" placeholder, rebuild the rest.
+      while (voiceSelect.options.length > 1) voiceSelect.remove(1);
+      voices.forEach((voice) => {
+        const option = document.createElement("option");
+        option.value = voice.voiceURI;
+        option.textContent = voice.name + " (" + voice.lang + ")";
+        voiceSelect.appendChild(option);
+      });
+      if (previous && voices.some((v) => v.voiceURI === previous)) {
+        voiceSelect.value = previous;
+      }
+    }
+
+    function restorePreferences() {
+      try {
+        const savedRate = localStorage.getItem("listenRate");
+        if (savedRate && rateSelect) {
+          const valid = ["0.75", "1", "1.25", "1.5"];
+          if (valid.includes(savedRate)) rateSelect.value = savedRate;
+        }
+      } catch (e) {
+        /* localStorage is best-effort */
+      }
+    }
+
+    if (playBtn) playBtn.addEventListener("click", togglePlay);
+    if (stopBtn) stopBtn.addEventListener("click", stop);
+    if (prevBtn)
+      prevBtn.addEventListener("click", () => {
+        if (items.length === 0) collectItems();
+        speakAt(currentIndex - 1);
+      });
+    if (nextBtn)
+      nextBtn.addEventListener("click", () => {
+        if (items.length === 0) collectItems();
+        speakAt(currentIndex + 1);
+      });
+    if (exitBtn) exitBtn.addEventListener("click", exitMode);
+
+    if (voiceSelect) {
+      voiceSelect.addEventListener("change", () => {
+        try {
+          localStorage.setItem("listenVoiceURI", voiceSelect.value);
+        } catch (e) {
+          /* noop */
+        }
+        if (isPlaying && isListening()) speakAt(currentIndex);
+      });
+    }
+    if (rateSelect) {
+      rateSelect.addEventListener("change", () => {
+        try {
+          localStorage.setItem("listenRate", rateSelect.value);
+        } catch (e) {
+          /* noop */
+        }
+        if (isPlaying && isListening()) speakAt(currentIndex);
+      });
+    }
+
+    // Click-to-hear: in listen mode, clicking a readable block jumps
+    // the narration there. Interactive elements keep their default
+    // behavior so links/buttons still navigate/activate.
+    document.addEventListener("click", (event) => {
+      if (!isListening()) return;
+      const target = event.target;
+      if (!target || !target.closest) return;
+      if (target.closest("#listen-player")) return;
+      if (target.closest(CLICKABLE_SELECTOR)) return;
+      const readable = target.closest(READABLE_SELECTOR);
+      if (!readable) return;
+      if (items.length === 0) collectItems();
+      let index = parseInt(
+        readable.getAttribute("data-listen-index") || "-1",
+        10,
+      );
+      if (!Number.isFinite(index) || index < 0) {
+        index = items.indexOf(readable);
+      }
+      if (index < 0 || index >= items.length) return;
+      speakAt(index);
+    });
+
+    window.addEventListener("listen-mode-changed", (event) => {
+      const listening = Boolean(event && event.detail && event.detail.listening);
+      if (listening) {
+        enterMode();
+      } else {
+        exitModeUI();
+      }
+    });
+
+    // Stop stale audio before Astro swaps the page, then narrate the
+    // fresh page if the mode is still on.
+    document.addEventListener("astro:before-swap", () => {
+      if (!isListening()) return;
+      speakToken++;
+      try {
+        synth.cancel();
+      } catch (e) {
+        /* noop */
+      }
+    });
+
+    document.addEventListener("astro:after-swap", () => {
+      restoreModeClass();
+      if (!isListening()) return;
+      showPlayer();
+      populateVoices();
+      collectItems();
+      currentIndex = 0;
+      notice = "";
+      if (isPlaying) {
+        speakAt(0);
+      } else {
+        // Mode survived navigation while paused/stopped: stay visible
+        // on the new page's content without auto-playing.
+        clearHighlight();
+        updateUI();
+      }
+    });
+
+    if ("onvoiceschanged" in synth) {
+      synth.onvoiceschanged = () => {
+        voicesSettled = true;
+        populateVoices();
+        updateUI();
+  
+      };
+    }
+
+    document.addEventListener("keydown", (event) => {
+      if (event.key === "Escape" && isListening()) {
+        const active = document.activeElement;
+        // Don't steal Escape from open selects/dropdowns.
+        if (active && (active.tagName === "SELECT" || active.tagName === "INPUT")) return;
+        exitMode();
+      }
+    });
+
+    restorePreferences();
+    populateVoices();
+
+    collectItems();
+    // A restored mode (fresh load with listenMode persisted) shows the
+    // player but never autoplays - speech needs a user gesture, so it
+    // waits on "Ready to listen" until Play is pressed.
+    restoreModeClass();
+    notice = "";
+    updateUI();
+    if (isListening()) {
+      showPlayer();
+    } else {
+      hidePlayer();
+    }
+  })();
+</script>

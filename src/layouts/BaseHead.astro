@@ -1,0 +1,224 @@
+---
+import { ClientRouter } from "astro:transitions";
+import { AVATAR_URL, SITE } from "@/consts";
+import { basics, education, awards } from "@cv";
+
+interface Props {
+  title: string;
+  description: string;
+}
+
+const canonicalURL = new URL(Astro.url.pathname, Astro.site);
+
+const { title, description } = Astro.props;
+
+const email = basics.socials.find((s) => s.network === "email")?.url.replace(
+  "mailto:",
+  "",
+);
+const sameAs = basics.socials
+  .filter((s) => s.network !== "email")
+  .map((s) => s.url);
+
+// One-line tagline used for every social/preview description (og/twitter):
+// the full CV summary paragraph belongs in the page body, not in a
+// link-preview card where it gets truncated and looks like a wall of text.
+const socialDescription = `${basics.name} — ${basics.label}`;
+
+// schema.org Person record for the person this CV data describes:
+// makes the site's full identity (name, role, location, contact,
+// education, awards, profiles) machine-readable for search engines
+// instead of just being prose in the body text.
+const personSchema = {
+  "@context": "https://schema.org",
+  "@type": "Person",
+  name: basics.name,
+  jobTitle: basics.label,
+  description: basics.summary,
+  image: new URL(AVATAR_URL, Astro.site).toString(),
+  ...(email ? { email } : {}),
+  address: {
+    "@type": "PostalAddress",
+    addressLocality: basics.location.city,
+    addressRegion: basics.location.region,
+    addressCountry: basics.location.countryCode,
+  },
+  ...(sameAs.length > 0 ? { sameAs } : {}),
+  ...(education.length > 0
+    ? {
+        alumniOf: education.map(({ institution }) => ({
+          "@type": "EducationalOrganization",
+          name: institution,
+        })),
+      }
+    : {}),
+  ...(awards.length > 0
+    ? { award: awards.map(({ title: awardTitle }) => awardTitle) }
+    : {}),
+};
+
+const websiteSchema = {
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  name: SITE.TITLE,
+  description: SITE.DESCRIPTION,
+  url: new URL(import.meta.env.BASE_URL, Astro.site).toString(),
+};
+---
+
+<!-- Global Metadata -->
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<meta name="generator" content={Astro.generator} />
+<meta name="theme-color" media="(prefers-color-scheme: light)" content="#ffffff" />
+<meta name="theme-color" media="(prefers-color-scheme: dark)" content="#000000" />
+
+<!-- Open Graph / Facebook / WhatsApp -->
+<meta property="og:type" content="website" />
+<meta property="og:url" content={canonicalURL} />
+<meta property="og:site_name" content={SITE.TITLE} />
+<meta property="og:locale" content="en_US" />
+<meta property="og:title" content={`Portfolio — ${basics.name}`} />
+<meta property="og:description" content={socialDescription} />
+<meta
+  property="og:image"
+  content={new URL(`${import.meta.env.BASE_URL}Assets/Media/preview.png`, Astro.site)}
+/>
+
+<!-- Twitter -->
+<meta property="twitter:card" content="summary_large_image" />
+<meta property="twitter:url" content={canonicalURL} />
+<meta property="twitter:title" content={`Portfolio — ${basics.name}`} />
+<meta property="twitter:description" content={socialDescription} />
+<meta
+  property="twitter:image"
+  content={new URL(`${import.meta.env.BASE_URL}Assets/Media/preview.png`, Astro.site)}
+/>
+
+<!-- Structured data: Person + WebSite (JSON-LD) -->
+<script
+  type="application/ld+json"
+  is:inline
+  set:html={JSON.stringify([personSchema, websiteSchema])}
+/>
+
+<!-- Favicon -->
+<link
+  rel="icon"
+  type="image/svg+xml"
+  href={`${import.meta.env.BASE_URL.replace(/\/$/, '')}/favicon.svg`}
+/>
+
+<!-- Fonts -->
+<link
+  rel="preload"
+  href={`${import.meta.env.BASE_URL}fonts/Inter-Regular.woff2`}
+  as="font"
+  type="font/woff2"
+  crossorigin
+/>
+<link
+  rel="preload"
+  href={`${import.meta.env.BASE_URL}fonts/Inter-Bold.woff2`}
+  as="font"
+  type="font/woff2"
+  crossorigin
+/>
+
+<!-- Avatar photo (Photo.tsx, Home page only). It's a large remote
+     file, and previously only started fetching once the Home page's
+     React island hydrated client-side - by then the rest of the UI
+     had already painted, so the avatar visibly popped in afterward.
+     Preloading it from every page's <head> means the browser starts
+     that fetch immediately (in parallel with everything else) and, on
+     the ~5-minute HTTP cache this file is served with, means it's
+     already warm in cache if you arrive at Home by navigating there
+     from About/Projects rather than landing on it directly. -->
+<link rel="preload" href={AVATAR_URL} as="image" fetchpriority="high" />
+
+<!-- Canonical URL -->
+<link rel="canonical" href={canonicalURL} />
+
+<!-- Primary Meta Tags -->
+<title>{title}</title>
+<meta name="title" content={title} />
+<meta name="description" content={description} />
+
+<!--  Client-side routing / View Transitions -->
+<ClientRouter />
+
+<!--  Theme + Reduced Motion -->
+<script is:inline>
+  const setTheme = () => {
+    const theme = (() => {
+      if (
+        typeof localStorage !== "undefined" &&
+        localStorage.getItem("theme")
+      ) {
+        return localStorage.getItem("theme");
+      }
+      if (window.matchMedia("(prefers-color-scheme: dark)").matches) {
+        return "dark";
+      }
+      return "light";
+    })();
+
+    if (theme === "light") {
+      document.documentElement.classList.remove("dark");
+    } else {
+      document.documentElement.classList.add("dark");
+    }
+
+    window.localStorage.setItem("theme", theme || "light");
+  };
+
+  const setReducedMotion = () => {
+    const reducedMotion = (() => {
+      if (
+        typeof localStorage !== "undefined" &&
+        localStorage.getItem("reducedMotion")
+      ) {
+        return localStorage.getItem("reducedMotion") === "true";
+      }
+      return window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    })();
+
+    document.documentElement.classList.toggle("reduce-motion", reducedMotion);
+    window.localStorage.setItem(
+      "reducedMotion",
+      reducedMotion ? "true" : "false",
+    );
+  };
+
+  const setListenMode = () => {
+    // Listen mode is user-controlled only: it persists across
+    // client-side navigations (the incoming document's <html> carries
+    // no "listening" class, so without this every navigation would
+    // silently exit the mode). It is only ever turned on/off by the
+    // ListenToggle buttons and the player exit control, which persist
+    // this same "listenMode" key.
+    let persisted = false;
+    try {
+      persisted = localStorage.getItem("listenMode") === "true";
+    } catch (e) {
+      persisted = false;
+    }
+    document.documentElement.classList.toggle("listening", persisted);
+  };
+
+  // Run immediately - not wrapped in an astro:page-load listener, which
+  // only fires once the page has essentially finished loading (well
+  // after first paint). Waiting for that event means the browser paints
+  // the default light/full-motion state first, then flips - a visible
+  // flash. Running synchronously here, before <body> is parsed, means
+  // the correct class is already on <html> for the very first paint.
+  setTheme();
+  setReducedMotion();
+  setListenMode();
+
+  // Client-side navigations swap in a freshly server-rendered <head>/
+  // <body>, so re-apply all three on every swap too.
+  document.addEventListener("astro:after-swap", setTheme);
+  document.addEventListener("astro:after-swap", setReducedMotion);
+  document.addEventListener("astro:after-swap", setListenMode);
+</script>
