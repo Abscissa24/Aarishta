@@ -9,7 +9,7 @@ jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
     permissions:
-      id-token: write        
+      id-token: write          # <-- lets the deploy action obtain an OIDC token
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
@@ -24,6 +24,12 @@ jobs:
 
       - name: Build Astro site
         run: npm run build
+
+      - name: Upload artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: github-pages          # artifact name the deploy step expects
+          path: dist                  # <-- Astro’s default output folder
 
       - name: Deploy to GitHub Pages
         uses: actions/deploy-pages@v4
