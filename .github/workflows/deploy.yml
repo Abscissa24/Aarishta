@@ -1,4 +1,4 @@
-name: Build and Deploy to Public Repo
+name: Build and Deploy to GitHub Pages
 
 on:
   push:
@@ -22,11 +22,3 @@ jobs:
 
       - name: Build Astro Site
         run: npm run build
-
-      - name: Push Static Output to Public Repo
-        uses: peaceiris/actions-gh-pages@v4
-        with:
-          personal_token: ${{ secrets.PUBLIC_REPO_TOKEN }}
-          external_repository: Abscissa24/Aarishta
-          publish_branch: main
-          publish_dir: ./dist
