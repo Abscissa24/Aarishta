@@ -2,7 +2,7 @@
 import Button from "@/components/Button.astro";
 import Photo from "@/components/Photo.astro";
 import BaseLayout from "@/layouts/BaseLayout.astro";
-import { AVATAR_URL } from "@/consts";
+import { AVATAR_URL, RESUME_URL } from "@/consts";
 import { basics } from "@cv";
 const { name, label, summary, socials, location } = basics;
 
@@ -43,6 +43,11 @@ const homeDescription = `${name} — ${label}`;
                   />
                 ))
               }
+              <Button
+                icon="resume"
+                href={RESUME_URL}
+                label="Preview and download resume"
+              />
             </div>
           </div>
           <!-- Photo Section -->

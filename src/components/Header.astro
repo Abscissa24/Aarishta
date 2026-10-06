@@ -2,7 +2,6 @@
 import ThemeToggle from "./ThemeToggle.astro";
 import ListenToggle from "./ListenToggle.astro";
 import ReducedMotionToggle from "./ReducedMotionToggle.astro";
-import { Icon } from "astro-icon/components";
 import { SITE, LINKS } from "@/consts";
 ---
 
@@ -42,15 +41,6 @@ import { SITE, LINKS } from "@/consts";
         <ListenToggle id="headerListenToggle" />
         <ThemeToggle id="headerThemeToggle" />
         <ReducedMotionToggle id="headerReducedMotionToggle" />
-        <a
-          href="/Aarishta/Assets/Media/AarishtaP-Resume.pdf"
-          target="_blank"
-          class="flex size-9 rounded-full p-2 items-center justify-center text-black/80 dark:text-white/80 bg-transparent hover:bg-black/20 dark:hover:bg-white/20 stroke-current hover:stroke-black hover:dark:stroke-white border border-black/25 dark:border-white/25 hover:transition-colors duration-300"
-          aria-label="Preview and download resume"
-        >
-          <Icon name="resume" size={20} class="mr-1 text-black/80 dark:text-white/80" />
-          Resume
-        </a>
       </div>
     </div>
   </div>
